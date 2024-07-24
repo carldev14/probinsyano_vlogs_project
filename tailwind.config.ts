@@ -20,7 +20,7 @@ const config = {
     },
     extend: {
       fontSize: {
-        'NavbartextSize': '14px',
+        'NavbartextSize': '12.6px',
       },
       colors: {
         border: "hsl(var(--border))",

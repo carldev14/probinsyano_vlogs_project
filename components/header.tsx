@@ -2,23 +2,38 @@
 
 import Image from "next/image";
 import Logo from '../assets/logo.webp'
-import { Bars3BottomLeftIcon } from "@heroicons/react/16/solid";
+import { Bars3BottomLeftIcon, HomeIcon, VideoCameraIcon, QuestionMarkCircleIcon } from "@heroicons/react/16/solid";
 import Link from "next/link";
-import { useState } from "react";
+import { use, useState } from "react";
+import { usePathname } from 'next/navigation';
 
-const links = [
-    { text: "Home", href: "/" },
-    { text: "About My Self", href: "/about-my-self" },
-    { text: "My Videos", href: "/my-videos" }
+
+
+const navbar = [
+    { text: "Home", href: "/", icon: <HomeIcon /> },
+    { text: "About My Self", href: "/about-my-self", icon: <VideoCameraIcon /> },
+    { text: "My Videos", href: "/my-videos", icon: <QuestionMarkCircleIcon /> }
 ];
 
 export default function Header() {
+    const pathname = usePathname();
+    if (pathname === '/') {
+        console.log('Home')
+
+    } else if (pathname === '/about-my-self') {
+
+    } else if (pathname === '/my-videos') {
+
+    } else {
+        console.log('You are lost')
+    }
+
     const [showNav, setShowNav] = useState(false);
 
     const handleToggleNav = () => {
         setShowNav(!showNav);
     };
-    const hideNavbarAfterClick =() =>{
+    const hideNavbarAfterClick = () => {
         setShowNav(false);
     }
 
@@ -26,34 +41,34 @@ export default function Header() {
         <header className="p-2 border-gray-300 border-b sticky bg-white select-none" style={{ top: '0px' }}>
             <div className='flex items-center mx-1 gap-3 ' >
                 <Bars3BottomLeftIcon
-                    className="size-7 text-sky-500 p-1 shadow shadow-neutral-400 rounded cursor-pointer"
+                    className="size-7 text-black/85 p-1 shadow shadow-neutral-400 rounded cursor-pointer"
                     onClick={handleToggleNav}
                 />
-                <Image src={Logo} alt="Logo" width={40} height={40} className="rounded-full p-1 shadow shadow-blue-500" ></Image>
-                <label className="text-sm text-sky-600">ProbinsyanoVlogs</label>
+                <Image src={Logo} alt="Logo" width={35} height={35} className="rounded-2xl p-1 shadow shadow-neutral-400" ></Image>
+                <label className="text-sm text-black/85 tracking-wider">ProbinsyanoVlogs</label>
             </div>
             {showNav && (
                 <div
                     style={{
-                        top: '56.5px',
+                        top: '52px',
                         left: '0px',
                         opacity: showNav ? 1 : 0,
                         transition: 'opacity 2s',
                     }}
-                    className={`fixed w-full h-full bg-gray-300 bg-opacity-50 pointer`}
+                    className={`fixed w-full h-full bg-black/30 bg-opacity-50 pointer`}
                     onClick={handleToggleNav}
                 />
-            )}            
+            )}
             <nav
                 className={'fixed bg-white p-2 '}
-                style={{ top: '56.5px', left: showNav ? '0' : '-100%', width: '250px', height: '100vh', transition: '.2s' }}
+                style={{ top: '52.1px', left: showNav ? '0' : '-100%', width: '200px', height: '100vh', transition: '.2s' }}
             >
-                <div className="p-2">
-                    <h1 className="text-lg ">Routes: </h1>
-                    <ul className="pl-5">
-                        {links.map((link) => (
-                            <li key={link.href} className=" w-full mt-1">
-                                <Link href={link.href} onClick={hideNavbarAfterClick} className="block  p-1 text-sky-600 text-NavbartextSize">{link.text}</Link>
+                <div className="p-2 ">
+
+                    <ul className=" ">
+                        {navbar.map((item) => (
+                            <li key={item.href} className="m-1  block ">
+                                <Link href={item.href} onClick={hideNavbarAfterClick} className=" flex items-center py-2 px-1 text-black/80 text-NavbartextSize gap-2"><i className="size-5">{item.icon}</i>{item.text}</Link>
                             </li>
                         ))}
                     </ul>
