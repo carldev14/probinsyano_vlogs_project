@@ -21,6 +21,7 @@ const config = {
     extend: {
       fontSize: {
         'NavbartextSize': '12.6px',
+        'logoSize': '13px',
       },
       colors: {
         border: "hsl(var(--border))",
