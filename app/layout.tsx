@@ -4,7 +4,7 @@ import "./globals.css";
 import Link from "next/link";
 import Header from "@/components/header";
 
-const poppins = Poppins({ subsets: [], weight: '400' });
+const poppins = Poppins({ subsets: [], weight: '500' });
 
 export const metadata: Metadata = {
   title: "Probinsyano Vlogs",
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={poppins.className}>
+      <body className={`${poppins.className}`}>
         <Header />
 
         {children}

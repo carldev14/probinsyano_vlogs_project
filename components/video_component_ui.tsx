@@ -1,7 +1,10 @@
 "use client"
+
 import { useEffect, useState } from "react";
 import axios from "axios"
 import Image from "next/image";
+import { Poppins } from "next/font/google";
+const smallFontFace = Poppins({ subsets: [], weight: '400' });
 
 interface Data {
     _id: number;
@@ -55,14 +58,20 @@ export default function VideoUi() {
                                     loading="lazy"
                                     className="object-cover rounded h-48"
                                     width={1920}
-                                    
+
                                     height={100}
                                 />
                             </section>
+                            
 
-                            <section className="my-2">
+                            <hr className="my-4" />
+                            
+                            <section className="flex flex-col gap-2">
                                 <h1 className="text-sm  text-black/85">{item.title}</h1>
-                                <p className="text-xs text-black/60">{item.description}</p>
+                                
+                                <p className={`${smallFontFace.className} text-xs text-black/60`}>{item.description}</p>
+                                <hr />
+                                <a href={item.url} className="text-white bg-blue-500 text-xs p-2 text-center rounded">Watch Now</a>
                             </section>
                         </section>
                     </div>
