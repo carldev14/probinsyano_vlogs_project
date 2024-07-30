@@ -11,7 +11,7 @@ const ImageComponent = ({ src, alt }: ImageProps) => {
       <Image
         src={src}
         alt={alt}
-        priority
+        loading="lazy"
         className="rounded-t-md rounded-b"
         layout="fixed"
         width={500}

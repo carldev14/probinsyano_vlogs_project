@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.11.5",
     "@heroicons/react": "^2.1.5",
     "@mui/material": "^5.16.4",
+    "@tanstack/react-query": "^5.51.15",
     "axios": "^1.7.2",
     "boxicons": "^2.1.4",
     "class-variance-authority": "^0.7.0",
@@ -25,7 +26,7 @@
     "nodemailer": "^6.9.14",
     "react": "^18",
     "react-dom": "^18",
-    "react-ionicons": "^4.2.1",
+    "react-ionicons": "^1.5.7",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7"
   },

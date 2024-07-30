@@ -8,8 +8,7 @@ import { ChevronLeftIcon, ChevronRightIcon, HomeIcon, Cog6ToothIcon, VideoCamera
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from 'next/navigation';
-import { useRouter } from "next/navigation";
-import { useCallback } from 'react';
+
 const navbar = [
     { text: "Home", href: "/", icon: <HomeIcon /> },
     { text: "Contact Me", href: "/contact-me", icon: < PhoneIcon /> },
@@ -21,7 +20,7 @@ const navbar = [
 
 
 export default function Header() {
-    const router = useRouter();
+
     const pathname = usePathname();
     const [showNav, setShowNav] = useState(false);
 
