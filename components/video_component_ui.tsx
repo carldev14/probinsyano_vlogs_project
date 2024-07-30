@@ -1,6 +1,6 @@
 "use client"
 import dynamic from "next/dynamic";
-import { cache, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios"
 import Image from "next/image";
 import { Poppins } from "next/font/google";
@@ -22,13 +22,10 @@ interface Data {
 }
 const getData = async () => {
     const response = await axios.get('/api/collections', {
-        params:{
-            cache: 'force-cache'
+        params: {
+            next: { revalidate: 60 }
         }
-    }
-        
-    );
-
+    });
     return response.data.collections;
 }
 export default function VideoUi() {
