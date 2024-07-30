@@ -10,6 +10,7 @@ export default function HomeUi() {
             
                 <Greetings/>
                 <br />
+                <br />
                 <HeroCard/>
 
 
