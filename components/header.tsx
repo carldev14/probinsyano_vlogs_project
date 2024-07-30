@@ -8,18 +8,20 @@ import { ChevronLeftIcon, ChevronRightIcon, HomeIcon, Cog6ToothIcon, VideoCamera
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from 'next/navigation';
-
+import { useRouter } from "next/navigation";
+import { useCallback } from 'react';
 const navbar = [
     { text: "Home", href: "/", icon: <HomeIcon /> },
     { text: "Contact Me", href: "/contact-me", icon: < PhoneIcon /> },
-    { text: "My blogs", href: "/my-blogs", icon: <ChatBubbleBottomCenterIcon />  },
+    { text: "My blogs", href: "/my-blogs", icon: <ChatBubbleBottomCenterIcon /> },
     { text: "My Videos", href: "/my-videos", icon: <VideoCameraIcon /> },
     { text: "Preferences", href: "/preferences", icon: < Cog6ToothIcon /> }
-    
+
 ];
 
 
 export default function Header() {
+    const router = useRouter();
     const pathname = usePathname();
     const [showNav, setShowNav] = useState(false);
 
@@ -27,8 +29,20 @@ export default function Header() {
         setShowNav(!showNav);
     };
     const hideNavbarAfterClick = () => {
-        setShowNav(false);
+
+
+
     }
+    const handleLinkClick = useCallback((href: string) => {
+        return (event: React.MouseEvent) => {
+
+            setShowNav(false);
+            event.preventDefault();
+            setTimeout(() => {
+                router.push(href);
+            }, 1000); // delay for 2 seconds
+        };
+    }, [router]);
 
     return (
 
@@ -83,7 +97,7 @@ export default function Header() {
                     <ul className=" ">
                         {navbar.map((item) => (
                             <li key={item.href} className={`m-1  block rounded-lg ${pathname === item.href ? 'text-blue-600 bg-blue-50 ' : 'text-black/80'}`}>
-                                <Link href={item.href} passHref onClick={hideNavbarAfterClick}
+                                <Link scroll={false} href={item.href} passHref onClick={handleLinkClick(item.href)}
                                     className={`${navlinksfontface.className} flex items-center  p-2 text-NavbartextSize gap-2 
                                         `}>
                                     <i className="size-5">{item.icon}</i>{item.text}
