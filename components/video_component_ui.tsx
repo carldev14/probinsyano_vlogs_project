@@ -51,19 +51,18 @@ export default function VideoUi() {
 
     return (
         <main className="p-2">
-
+            <h1 className="text-sm tracking-wide text-center  text-black/70">My Videos</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
                 {data.map((item) => (
-                    <div key={item._id} className=" p-4  rounded shadow-md ">
-                        <section className="text-white flex flex-col gap-2">
+                    <div key={item._id} className=" p-3  rounded shadow-md ">
+                        <section className="text-white flex flex-col gap-2 justify-between ">
 
-                                {/*When adding an image. make sure that the size of the image is contains with width of 1920px and a height of 190px*/}
+                                
                                 <ImageComponent
 
                                     src={item.image}
                                     alt={"Images"}
-                                    width={680}
-                                    height={360}
+
                                 />
            
 

@@ -1,28 +1,24 @@
-// ImageComponent.js
 import Image from "next/image";
 
 interface ImageProps {
   src: string;
   alt: string;
-  width: number;
-  height: number;
-
 }
 
-const ImageComponent = ({ src, alt, width, height }: ImageProps) => {
+const ImageComponent = ({ src, alt }: ImageProps) => {
   return (
-<section className="w-full pointer-events-none select-none  " >
+    <section className=" pointer-events-none select-none">
       <Image
         src={src}
         alt={alt}
-        loading="lazy"
+        priority
         className="rounded-t-md rounded-b"
-        width={650}
-        height={360}
-
-
+        layout="fixed"
+        width={500}
+        height={500}
+        objectFit="cover"
       />
-      </section >
+    </section>
   );
 };
 
