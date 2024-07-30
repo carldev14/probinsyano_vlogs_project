@@ -28,21 +28,10 @@ export default function Header() {
     const handleToggleNav = () => {
         setShowNav(!showNav);
     };
-    const hideNavbarAfterClick = () => {
 
-
-
+    const handleLinkClick = () => {
+        setShowNav(false)
     }
-    const handleLinkClick = useCallback((href: string) => {
-        return (event: React.MouseEvent) => {
-
-            setShowNav(false);
-            event.preventDefault();
-            setTimeout(() => {
-                router.push(href);
-            }, 1000); // delay for 2 seconds
-        };
-    }, [router]);
 
     return (
 
@@ -97,7 +86,7 @@ export default function Header() {
                     <ul className=" ">
                         {navbar.map((item) => (
                             <li key={item.href} className={`m-1  block rounded-lg ${pathname === item.href ? 'text-blue-600 bg-blue-50 ' : 'text-black/80'}`}>
-                                <Link scroll={false} href={item.href} passHref onClick={handleLinkClick(item.href)}
+                                <Link  href={item.href}  onClick={handleLinkClick}
                                     className={`${navlinksfontface.className} flex items-center  p-2 text-NavbartextSize gap-2 
                                         `}>
                                     <i className="size-5">{item.icon}</i>{item.text}

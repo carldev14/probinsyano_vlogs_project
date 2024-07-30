@@ -21,12 +21,13 @@ interface Data {
     url: string;
 }
 const getData = async () => {
-    const response = await axios.get('/api/collections', {
-        params: {
+    const response = await fetch('/api/collections', {
+
             next: { revalidate: 60 }
-        }
-    });
-    return response.data.collections;
+
+    })
+    const results = await response.json();
+    return results.collections;
 }
 export default function VideoUi() {
     const [data, setData] = useState<Data[]>([]);
@@ -51,7 +52,6 @@ export default function VideoUi() {
 
     return (
         <main className="p-2">
-            <h1 className="text-sm tracking-wide text-center  text-black/70">My Videos</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
                 {data.map((item) => (
                     <div key={item._id} className=" p-3  rounded shadow-md ">
