@@ -26,7 +26,7 @@ interface Data {
 const getData = async () => {
     const response = await fetch('/api/collections', {
 
-            next: { revalidate: 60 }
+            next: { revalidate: 1 }
 
     })
     const results = await response.json();
@@ -62,7 +62,12 @@ export default function VideoUi() {
                         <section className="text-white flex flex-col gap-2 justify-between ">
 
                                 
+                                <ImageComponent
 
+                                    src={item.image}
+                                    alt={"Images"}
+
+                                />
            
 
 
