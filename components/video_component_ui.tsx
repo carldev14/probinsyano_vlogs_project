@@ -12,7 +12,7 @@ const ImageComponent = dynamic(() => import('./image_component'), {
     loading: () => <LoadingForImage />,
     ssr: false, // Set to true for server-side rendering (optional)
 });
-const smallFontFace = Poppins({ subsets: [], weight: '400' });
+const smallFontFace = Poppins({ subsets: [], weight: '400', display: "swap", });
 
 
 
@@ -56,7 +56,7 @@ export default function VideoUi() {
     return (
         <main className="p-2">
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 tablets:grid-cols-2 laptops:grid-cols-3 desktop:grid-cols-5 gap-4">
                 {data.map((item) => (
                     <div key={item._id} className=" p-3  rounded shadow-md ">
                         <section className="text-white flex flex-col gap-2 justify-between ">

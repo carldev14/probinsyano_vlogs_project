@@ -4,7 +4,7 @@ import "./globals.css";
 import Link from "next/link";
 import Header from "@/components/header";
 
-const poppins = Poppins({ subsets: [], weight: '500' });
+const poppins = Poppins({ subsets: [], weight: '500', display: "swap", });
 
 export const metadata: Metadata = {
   title: "Probinsyano Vlogs",

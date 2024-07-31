@@ -24,8 +24,10 @@ const config = {
         'logoSize': '13px',
       },
       screens: {
-        'small-devices': '320px',
-        'tablets': '480px'
+
+        'tablets': '401px',
+        'laptops': '742px',
+        'desktop': '1201px',
       },
       colors: {
         border: "hsl(var(--border))",
