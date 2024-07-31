@@ -85,7 +85,7 @@ export default function Header() {
                     <ul className=" ">
                         {navbar.map((item) => (
                             <li key={item.href} className={`m-1  block rounded-lg ${pathname === item.href ? 'text-blue-600 bg-blue-50 ' : 'text-black/80'}`}>
-                                <Link  href={item.href}  onClick={handleLinkClick}
+                                <Link prefetch={false}  href={item.href}  onClick={handleLinkClick}
                                     className={`${navlinksfontface.className} flex items-center  p-2 text-NavbartextSize gap-2 
                                         `}>
                                     <i className="size-5">{item.icon}</i>{item.text}

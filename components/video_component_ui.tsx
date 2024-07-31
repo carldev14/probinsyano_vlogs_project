@@ -9,7 +9,7 @@ import LoadingForImage from "./loading_for_images";
 
 
 const ImageComponent = dynamic(() => import('./image_component'), {
-    loading: () => <LoadingForImage/>,
+    loading: () => <LoadingForImage />,
     ssr: false, // Set to true for server-side rendering (optional)
 });
 const smallFontFace = Poppins({ subsets: [], weight: '400' });
@@ -25,8 +25,8 @@ interface Data {
 }
 const getData = async () => {
     const response = await fetch('/api/collections', {
-
-            next: { revalidate: 1 }
+        cache: 'force-cache',
+        next: { revalidate: 60 }
 
     })
     const results = await response.json();
@@ -55,20 +55,20 @@ export default function VideoUi() {
 
     return (
         <main className="p-2">
-           
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
                 {data.map((item) => (
                     <div key={item._id} className=" p-3  rounded shadow-md ">
                         <section className="text-white flex flex-col gap-2 justify-between ">
 
-                                
-                                <ImageComponent
 
-                                    src={item.image}
-                                    alt={"Images"}
+                            <ImageComponent
 
-                                />
-           
+                                src={item.image}
+                                alt={"Images"}
+
+                            />
+
 
 
 
