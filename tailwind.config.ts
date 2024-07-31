@@ -23,6 +23,10 @@ const config = {
         'NavbartextSize': '12.6px',
         'logoSize': '13px',
       },
+      screens: {
+        'small-devices': '320px',
+        'tablets': '480px'
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

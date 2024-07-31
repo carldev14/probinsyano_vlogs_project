@@ -1,13 +1,12 @@
 "use client"
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import axios from "axios"
-import Image from "next/image";
-import {useMutation} from "@tanstack/react-query"
+
+
 import { Poppins } from "next/font/google";
-import Loading from "./loading";
+
 import LoadingForImage from "./loading_for_images";
-import { getUser } from "./actions";
+
 
 const ImageComponent = dynamic(() => import('./image_component'), {
     loading: () => <LoadingForImage/>,
@@ -63,12 +62,7 @@ export default function VideoUi() {
                         <section className="text-white flex flex-col gap-2 justify-between ">
 
                                 
-                                <ImageComponent
 
-                                    src={item.image}
-                                    alt={"Images"}
-
-                                />
            
 
 

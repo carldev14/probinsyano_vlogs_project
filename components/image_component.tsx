@@ -7,16 +7,16 @@ interface ImageProps {
 
 const ImageComponent = ({ src, alt }: ImageProps) => {
   return (
-    <section className=" pointer-events-none select-none">
+    <section className=" pointer-events-none select-none ">
       <Image
         src={src}
         alt={alt}
-        loading="lazy"
-        className="rounded-t-md rounded-b"
-        layout="fixed"
+        className="w-full"
+        priority
         width={500}
+
         height={500}
-        objectFit="cover"
+
       />
     </section>
   );

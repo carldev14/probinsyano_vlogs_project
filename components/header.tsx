@@ -51,7 +51,7 @@ export default function Header() {
                             />
                         )
                     }
-                    <Image src={Logo} alt="Logo" width={30} height={30} className="rounded-xl shadow shadow-neutral-400" style={{ padding: '3px' }}></Image>
+                  <label className=" text-xs shadow-sm p-2 text-blue-500 rounded-xl shadow-neutral-400">Probinsyano Vlogs</label>
 
                 </section>
                 <section className='p-1'>
