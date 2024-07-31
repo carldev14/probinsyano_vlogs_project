@@ -11,7 +11,7 @@ const ImageComponent = ({ src, alt }: ImageProps) => {
       <Image
         src={src}
         alt={alt}
-        className="w-full"
+        className="w-full rounded-md"
         priority
         width={500}
 

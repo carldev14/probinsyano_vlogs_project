@@ -78,7 +78,7 @@ export default function Header() {
             )}
             <nav
                 className={'fixed bg-white px-2 '}
-                style={{ top: '11%',left: showNav ? '0' : '-100%', width: '200px', height: '100vh', transition: '.2s ease' }}
+                style={{ top: '10.5%',left: showNav ? '0' : '-100%', width: '200px', height: '100vh', transition: '.2s ease' }}
             >
                 <div className="p-1 ">
 
