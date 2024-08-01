@@ -3,7 +3,7 @@
 import smallfontFace from "@/utils/smallfontface";
 import Image from "next/image";
 import Logo from '../assets/logo.webp'
-import { ChevronLeftIcon, ChevronRightIcon, HomeIcon, Cog6ToothIcon, VideoCameraIcon, ChatBubbleBottomCenterIcon, PhoneIcon } from "@heroicons/react/16/solid";
+import { Bars3CenterLeftIcon, ChevronRightIcon, HomeIcon, Cog6ToothIcon, VideoCameraIcon, ChatBubbleBottomCenterIcon, PhoneIcon } from "@heroicons/react/16/solid";
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from 'next/navigation';
@@ -36,22 +36,15 @@ export default function Header() {
         <>
             <header className="p-2   bg-white select-none shadow shadow-gray-200" style={{ top: '0px' }}>
                 <div className='flex  mx-1  justify-between items-center' >
-                    <section className="flex items-center h-[50px]" >
+                    <section className="flex flex-row items-center h-auto" >
 
-                        {
-                            showNav ? (
-                                <ChevronLeftIcon
-                                    className="size-8 text-blue-500 p-1 shadow shadow-neutral-400 rounded-xl cursor-pointer"
-                                    onClick={handleToggleNav}
-                                />
-                            ) : (
-                                <ChevronRightIcon
-                                    className="size-8 text-blue-500 p-1 shadow shadow-neutral-400 rounded-xl cursor-pointer"
-                                    onClick={handleToggleNav}
-                                />
-                            )
-                        }
-                       <Image alt="logo" src={logo} className="w-full h-[35px]"/>
+
+                        <Bars3CenterLeftIcon
+                            className="size-6 text-blue-500 cursor-pointer"
+                            onClick={handleToggleNav}
+                        />
+
+                        <Image alt="logo" src={logo} className="w-full h-[40px]" />
 
                     </section>
 
@@ -62,7 +55,7 @@ export default function Header() {
             {true && (
                 <div
                     style={{
-                        
+
                         left: '0px',
                         opacity: showNav ? 1 : 0,
                         transition: 'opacity .2s', // specify the property and duration
@@ -75,7 +68,7 @@ export default function Header() {
             <nav
                 className={'fixed bg-white px-2 border-t w-auto flex justify-center border-neutral-400 border-opacity-30'}
                 style={{ left: showNav ? '0' : '-100%', height: '100vh', transition: '.2s ease' }}
-            >   
+            >
                 <div className="p-1 ">
 
                     <ul className=" flex flex-col gap-1 mt-3 w-full">
