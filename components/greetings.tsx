@@ -33,11 +33,11 @@ export default function Greetings() {
     <main className="flex justify-center items-center h-auto flex-col">
       <section className="flex flex-col items-center ">
         <Image src={logo} alt="Intro_logo" width={150} height={150} className="rounded-full p-2 shadow shadow-neutral-400" />
-        <br />
+        <div className="my-3"></div>
         <h1 className="text-xl text-center md:text-2xl tracking-widest text-black/80">Probinsyano Vlogs</h1>
         <p className={`text-sm md:text-base text-black/60  ${smallfontFace.className}`}>Welcome to my website!</p>
       </section>
-      <br />
+      <div className="my-3"></div>
       <section className="flex items-center gap-3 flex-wrap justify-center">
         {linksData.map((item) => {
           if (item.type === "fbpage") {

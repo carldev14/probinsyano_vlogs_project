@@ -9,9 +9,7 @@ export default function HomeUi() {
         <main className="w-full p-4">
                 
                 <Greetings/>
-                <br />
-             
-                <br />
+                <div className="my-6"></div>
                 <HeroCard/>
 
 

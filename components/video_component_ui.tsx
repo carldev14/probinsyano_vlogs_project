@@ -77,7 +77,9 @@ export default function VideoUi() {
                                 <h1 className="text-sm  text-black/85">{item.title}</h1>
 
                                 <p className={`${smallFontFace.className} text-xs text-black/60`}>{item.description}</p>
-                                <hr />
+        
+                                <hr className="my-1" />
+
                                 <a href={item.url} className="text-white bg-blue-500 text-xs p-2 text-center rounded">Watch Now</a>
                             </section>
                         </section>
