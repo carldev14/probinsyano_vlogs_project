@@ -20,7 +20,7 @@ const config = {
     },
     extend: {
       fontSize: {
-        'NavbartextSize': '12.6px',
+        'NavbartextSize': '11px',
         'logoSize': '13px',
       },
       screens: {
