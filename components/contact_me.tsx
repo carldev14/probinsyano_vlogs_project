@@ -3,6 +3,7 @@
 import { Poppins } from "next/font/google";
 import { useState } from "react";
 
+
 const smallfontface = Poppins({ subsets: [], weight: '400' });
 
 interface RequestBodyType {
@@ -19,13 +20,14 @@ interface InputField {
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
+const emailregex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 export default function ContactUi() {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [their_email, setEmail] = useState('');
   const [their_name, setName] = useState('');
-  const [result, setresult] = useState('');
+  const [response, setresponse] = useState('');
 
 
 
@@ -57,18 +59,35 @@ export default function ContactUi() {
     },
   ];
 
-
+  const validateEmail = emailregex.test(their_email)
 
 
 
   async function handle_sendMail() {
+    setresponse("Please wait for reponse...")
+    if (!validateEmail) {
+      setresponse("Your email is not valid")
+      return ;
+    }
 
 
     if ([subject, message, their_email, their_name].includes("")) {
-      setresult("Fill up all fields");
-      return;
+      setresponse("Fill up all fields");
+      return ;
     }
 
+
+
+
+    const resetFormFields = () => {
+      setTimeout(() => {
+        setresponse("")
+      }, 1000);
+      setSubject("");
+      setMessage("");
+      setEmail("");
+      setName("");
+    };
 
 
     try {
@@ -86,10 +105,15 @@ export default function ContactUi() {
         } as RequestBodyType),
       });
       const res = await response.json();
-      setresult(res.message);
+
+      setresponse(res.message);
+
+      //Reset the form
+      resetFormFields();
+
     } catch (error) {
       console.error(error);
-      setresult("Error sending mail");
+      setresponse("Error sending mail");
     }
   }
 
@@ -137,7 +161,7 @@ export default function ContactUi() {
 
         </div>
 
-        <p className={`${smallfontface.className} text-sm`}>Results: {result}</p>
+        <p className={`${smallfontface.className} text-xs`}>Response: *{response}*</p>
       </div>
     </main>
   );

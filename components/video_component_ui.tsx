@@ -58,7 +58,7 @@ export default function VideoUi() {
 
             <div className="grid grid-cols-1 tablets:grid-cols-2 laptops:grid-cols-3 desktop:grid-cols-5 gap-4">
                 {data.map((item) => (
-                    <div key={item._id} className=" p-3  rounded shadow-md ">
+                    <div key={item._id} className=" p-3 ">
                         <section className="text-white flex flex-col gap-2 justify-between ">
 
 
@@ -73,14 +73,16 @@ export default function VideoUi() {
 
 
 
-                            <section className="flex flex-col gap-2">
-                                <h1 className="text-sm  text-black/85">{item.title}</h1>
+                            <section className="flex flex-col gap-4">
+                                <section className="flex flex-col gap-2">
+                                    <h1 className="text-sm  text-black/90">{item.title}</h1>
 
-                                <p className={`${smallFontFace.className} text-xs text-black/60`}>{item.description}</p>
-        
-                                <hr className="my-1" />
+                                    <p className={`${smallFontFace.className} text-xs text-black/80`}>{item.description}</p>
 
-                                <a href={item.url} className="text-white bg-blue-500 text-xs p-2 text-center rounded">Watch Now</a>
+
+
+                                </section>
+                                <a href={item.url} className="text-white bg-blue-500 text-xs p-2 text-center rounded-lg ">Watch Now</a>
                             </section>
                         </section>
                     </div>

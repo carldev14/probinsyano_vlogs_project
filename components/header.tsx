@@ -2,7 +2,7 @@
 
 import smallfontFace from "@/utils/smallfontface";
 import Image from "next/image";
-import Logo from '../assets/logo.webp'
+
 import { Bars3CenterLeftIcon, ChevronRightIcon, HomeIcon, Cog6ToothIcon, VideoCameraIcon, ChatBubbleBottomCenterIcon, PhoneIcon } from "@heroicons/react/16/solid";
 import Link from "next/link";
 import { useState } from "react";
@@ -34,17 +34,17 @@ export default function Header() {
     return (
 
         <>
-            <header className="p-2   bg-white select-none shadow shadow-gray-200" style={{ top: '0px' }}>
-                <div className='flex  mx-1  justify-between items-center' >
-                    <section className="flex flex-row items-center h-auto" >
+            <header className="p-2 mx-2   bg-white select-none shadow shadow-gray-100" style={{ top: '0px' }}>
+                <div className='flex    justify-between items-center' >
+                    <section className=" flex items-center" >
 
 
                         <Bars3CenterLeftIcon
-                            className="size-6 text-blue-500 cursor-pointer"
+                            className="size-5 text-blue-500 cursor-pointer mb-1"
                             onClick={handleToggleNav}
                         />
 
-                        <Image alt="logo" src={logo} className="w-full h-[40px]" />
+                        <Image alt="logo" src={logo} className="w-full h-[35px]" />
 
                     </section>
 
