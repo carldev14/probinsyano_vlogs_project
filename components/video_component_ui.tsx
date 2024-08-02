@@ -25,7 +25,7 @@ interface Data {
 }
 const getData = async () => {
     const response = await fetch('/api/collections', {
-        cache: 'force-cache',
+
         next: { revalidate: 60 }
 
     })

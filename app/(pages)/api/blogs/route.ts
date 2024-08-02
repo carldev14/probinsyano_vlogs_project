@@ -1,17 +1,17 @@
 import connectMongoDB from "@/libs/mongodb";
-import CollectionModels from "@/models/collections";
+import BlogsModels from "@/models/blogs";
 
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
     await connectMongoDB();
-    const collections = await CollectionModels.find().exec();
-    return NextResponse.json({ collections });
+    const data_fetched = await BlogsModels.find().exec();
+    return NextResponse.json({ data_fetched });
 }
 
 export async function POST(request: NextRequest) {
     const { title, description } = await request.json();
     await connectMongoDB();
-    await CollectionModels.create({ title, description });
+    await BlogsModels.create({ title, description });
     return NextResponse.json({ message: "Topic Created" }, { status: 201 });
 }
