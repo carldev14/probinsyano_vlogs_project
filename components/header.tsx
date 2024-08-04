@@ -4,7 +4,7 @@ import smallfontFace from "@/utils/smallfontface";
 import Image from "next/image";
 
 import { Bars3CenterLeftIcon, ChevronRightIcon, HomeIcon, Cog6ToothIcon, VideoCameraIcon, ChatBubbleBottomCenterIcon, PhoneIcon } from "@heroicons/react/16/solid";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { usePathname } from 'next/navigation';
 import logo from '@/assets/logo.svg'
@@ -21,14 +21,16 @@ const navbar = [
 export default function Header() {
 
     const pathname = usePathname();
+    const router = useRouter();
     const [showNav, setShowNav] = useState(false);
 
     const handleToggleNav = () => {
         setShowNav(!showNav);
     };
 
-    const handleLinkClick = () => {
-        setShowNav(false)
+    const handleLinkClick = (href:string) => {
+        router.push(href, undefined, { shallow: true });
+        setShowNav(false);
     }
 
     return (
@@ -74,11 +76,11 @@ export default function Header() {
                     <ul className=" flex flex-col gap-1 mt-3 w-full">
                         {navbar.map((item) => (
                             <li key={item.href} className={` block  rounded-lg ${pathname === item.href ? 'text-blue-600 bg-blue-50 ' : 'text-black/80'}`}>
-                                <Link prefetch href={item.href} onClick={handleLinkClick}
+                                <a onClick={() => handleLinkClick(item.href)}
                                     className={`${smallfontFace.className} flex-col flex justify-center items-center  p-2 text-NavbartextSize gap-2 
                                             `}>
                                     <i className="size-5">{item.icon}</i>{item.text}
-                                </Link>
+                                </a>
                             </li>
                         ))}
                     </ul>
