@@ -34,7 +34,7 @@ export default function Header() {
     return (
 
         <>
-            <header className="p-2 mx-2   bg-white select-none shadow shadow-gray-100" style={{ top: '0px' }}>
+            <header className="p-2 px-4   bg-white select-none shadow shadow-gray-100" style={{ top: '0px' }}>
                 <div className='flex    justify-between items-center' >
                     <section className=" flex items-center" >
 
@@ -74,7 +74,7 @@ export default function Header() {
                     <ul className=" flex flex-col gap-1 mt-3 w-full">
                         {navbar.map((item) => (
                             <li key={item.href} className={` block  rounded-lg ${pathname === item.href ? 'text-blue-600 bg-blue-50 ' : 'text-black/80'}`}>
-                                <Link prefetch={false} href={item.href} onClick={handleLinkClick}
+                                <Link prefetch href={item.href} onClick={handleLinkClick}
                                     className={`${smallfontFace.className} flex-col flex justify-center items-center  p-2 text-NavbartextSize gap-2 
                                             `}>
                                     <i className="size-5">{item.icon}</i>{item.text}
