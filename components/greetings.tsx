@@ -49,7 +49,7 @@ export default function Greetings() {
             )
           } else {
             return (
-              <Link href={item.url} className="p-[10px] rounded-full  text-xs text-white bg-blue-500" prefetch={false}>
+              <Link href={item.url} className="p-[10px] rounded-full  text-xs text-white bg-blue-500" prefetch>
                 {item.name}
               </Link>
             )
