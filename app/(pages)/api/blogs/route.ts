@@ -5,8 +5,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
     await connectMongoDB();
-    const data_fetched = await BlogsModels.find().exec();
-    return NextResponse.json({ data_fetched });
+    const blog_list_data = await BlogsModels.find().exec();
+    return NextResponse.json({ blog_list_data });
 }
 
 export async function POST(request: NextRequest) {

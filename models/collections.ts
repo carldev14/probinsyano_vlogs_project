@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 const collectionShema = new Schema(
   {
     title: String,
-    description: String,
+    descriptions: String,
     url: String,
     image: String,
   },

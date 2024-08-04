@@ -1,13 +1,13 @@
-interface Props {
-    params: {
-      id: string;
-    };
+'use client'
+
+import Blogs_Page_Ui from "@/components/blog_page";
+import { useEffect } from "react";
+interface props {
+  params: {
+    id: string;
   }
-  
-  export default function Blogs({ params }: Props) {
-    return (
-      <main>
-        {params.id}
-      </main>
-    );
-  }
+}
+export default function BlogPage({ params }: props) {
+
+  return <Blogs_Page_Ui id={params.id} />;
+}

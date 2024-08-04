@@ -3,9 +3,10 @@ import mongoose, { Schema } from "mongoose";
 const blogsShema = new Schema(
   {
     title: String,
-    description: String,
+    descriptions: String,
     url: String,
     image: String,
+    name: String,
   },
   {
     timestamps: true,

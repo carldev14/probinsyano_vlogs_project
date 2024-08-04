@@ -7,7 +7,10 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-    './lib/**/*.{ts,tsx}'
+    './lib/**/*.{ts,tsx}',
+    './utils/**/*.{ts,tsx}',
+    './templates/**/*.{ts,tsx}'
+
 	],
   prefix: "",
   theme: {
@@ -25,7 +28,7 @@ const config = {
       },
       screens: {
 
-        'tablets': '401px',
+        'tablets': '320px',
         'laptops': '742px',
         'desktop': '1201px',
       },
