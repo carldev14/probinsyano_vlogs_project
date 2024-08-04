@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import Loading from "@/components/loading";
 import GreetTemplate from '@/templates/greet_template';
-import { Suspense } from 'react';
+
 
 const VideoUI = dynamic(() => import('@/components/video_component_ui'), {
   loading: () => <Loading />,
@@ -13,9 +13,9 @@ export default function MyVideo() {
     <div className="p-3 place-items-center grid ">
       <section className="flex flex-col md:w-4/5 w-full gap-2">
         <GreetTemplate title='My Videos' descriptions='Please check out my videos and please suppoprt me' />
-        <Suspense>
+
           <VideoUI />
-        </Suspense>
+
       </section>
 
     </div>

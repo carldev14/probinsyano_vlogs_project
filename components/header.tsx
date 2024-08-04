@@ -16,6 +16,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import logo from "@/assets/logo.svg";
 import { PrefetchKind } from "next/dist/client/components/router-reducer/router-reducer-types";
+import Link from "next/link";
 
 const navbar = [
     { text: "Home", href: "/", icon: <HomeIcon /> },
@@ -35,13 +36,9 @@ export default function Header() {
         setShowNav(!showNav);
     };
 
-    const handleLinkClick =  (href: string) => {
+    const handleLinkClick =  () => {
         setShowNav(false);
-        router.prefetch(href, { kind: PrefetchKind.FULL });
 
-
-
-        router.push(href);
 
 
 
@@ -95,13 +92,16 @@ export default function Header() {
                                     : "text-black/80"
                                     }`}
                             >
-                                <a
-                                    onClick={() => handleLinkClick(item.href)}
+                                <Link
+                                    href={item.href}
+                                    prefetch={true}
+                                    
+                                    onClick={handleLinkClick}
                                     className={`${smallfontFace.className} flex-col flex justify-center items-center p-2 text-NavbartextSize gap-2 cursor-pointer`}
                                 >
                                     <i className="size-5">{item.icon}</i>
                                     {item.text}
-                                </a>
+                                </Link>
                             </li>
                         ))}
                     </ul>
