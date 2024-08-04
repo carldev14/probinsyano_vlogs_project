@@ -28,7 +28,7 @@ const config = {
       },
       screens: {
 
-        'tablets': '320px',
+        'tablets': '400px',
         'laptops': '742px',
         'desktop': '1201px',
       },
