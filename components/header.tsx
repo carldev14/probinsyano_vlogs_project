@@ -5,7 +5,6 @@ import Image from "next/image";
 
 import {
     Bars3CenterLeftIcon,
-    ChevronRightIcon,
     HomeIcon,
     Cog6ToothIcon,
     VideoCameraIcon,
