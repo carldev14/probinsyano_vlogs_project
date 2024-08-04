@@ -36,12 +36,14 @@ export default function Header() {
         setShowNav(!showNav);
     };
 
-    const handleLinkClick = async (href: string) => {
+    const handleLinkClick =  (href: string) => {
         setShowNav(false);
-        router.prefetch(href, {kind: PrefetchKind.AUTO});
+        router.prefetch(href, { kind: PrefetchKind.FULL });
+
 
 
         router.push(href);
+
 
 
 
