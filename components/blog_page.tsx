@@ -10,7 +10,7 @@ import Loading from "./loading";
 
 
 export default function Blogs_Page_Ui({ id }: Props) {
-  const [blogSc, setBlogSc] = useState<BlogsType | null>(null)
+
 
   const { data, error, isPending } = useQuery({
     queryKey: ['blogsSc'],
