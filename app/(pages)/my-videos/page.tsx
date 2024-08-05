@@ -5,6 +5,7 @@ import GreetTemplate from '@/templates/greet_template';
 
 const VideoUI = dynamic(() => import('@/components/video_component_ui'), {
   loading: () => <Loading />,
+  
   ssr: false, // Set to true for server-side rendering (optional)
 });
 

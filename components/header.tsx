@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import logo from "@/assets/logo.svg";
-import { PrefetchKind } from "next/dist/client/components/router-reducer/router-reducer-types";
+
 import Link from "next/link";
 
 const navbar = [
@@ -27,7 +27,7 @@ const navbar = [
 ];
 
 export default function Header() {
-    const [rendered_d, setRender] = useState([])
+
     const pathname = usePathname();
     const [showNav, setShowNav] = useState(false);
     const router = useRouter();
