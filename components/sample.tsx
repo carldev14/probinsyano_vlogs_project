@@ -20,7 +20,7 @@ export default function Sample() {
     }
   }, [data])
 
-  if (isPending) return 'Loading...'
+  if (isPending) return 'Loading....'
 
   return (
     <div>
