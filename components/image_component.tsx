@@ -12,10 +12,11 @@ const ImageComponent = ({ src, alt }: ImageProps) => {
         src={src}
         alt={alt}
         className="w-full rounded-xl"
-        priority
-        width={500}
+        priority={true}
 
-        height={500}
+        width={400}
+
+        height={400}
 
       />
     </section>

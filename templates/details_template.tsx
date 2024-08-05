@@ -9,10 +9,14 @@ export default function DetailsTemplate({ title, descriptions, name }: DetailsTe
     return (
         <main>
             <section className="flex flex-col gap-2 px-1 pb-1">
-                <h1 className="text-sm  text-black ">{title}</h1>
-                <label className={`${smallfontFace.className} text-xs text-black`}>{name}</label>
+                <section>
+                    <h1 className="text-sm  text-black ">{title}</h1>
+                    <label className={`${smallfontFace.className} text-xs text-black`}>{name}</label>
+                </section>
                 <hr />
-                <p className={`${smallfontFace.className} text-xs text-black/90`}>{descriptions}</p>
+                <section>
+                    <p className={`${smallfontFace.className} text-xs text-black/90`}>{descriptions}</p>
+                </section>
 
 
 

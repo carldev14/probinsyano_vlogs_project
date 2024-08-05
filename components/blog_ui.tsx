@@ -3,48 +3,41 @@ import { BlogsType } from "@/types/blogsType";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import ImageComponent from "./image_component";
-
+import { useQuery } from "@tanstack/react-query";
 import DetailsTemplate from "@/templates/details_template";
+import Loading from "./loading";
 
 
-async function getData() {
-    const response = await fetch('/api/blogs', {
-
-        next: {
-            revalidate: 60
-        }
-
-
-    })
-    const results = await response.json();
-
-    return results.blog_list_data
-}
 
 export default function BlogUi() {
-    const [data, setData] = useState<BlogsType[]>([])
+    const [blog, setBlog] = useState<BlogsType[]>([])
+
+    const { data, error, isPending } = useQuery({
+        queryKey: ['blogs'],
+        queryFn: async () => {
+            const response = await fetch('/api/blogs')
+            const data = await response.json()
+            return data.blog_list_data;
+        },
+    })
 
     useEffect(() => {
-        const fetched = async () => {
-
-            try {
-                const fetched_data = await getData();
-                setData(fetched_data)
-
-            } catch (error) {
-                console.log(error)
-            }
+        if (data) {
+            setBlog(data)
         }
+    }, [data])
+    //OnLoading. Add a loading screen if not the data is not loaded yet.
+    if (isPending) return <Loading/>;
+    //Error indicator
+    if (error) console.log(error)
 
-        fetched()
-    }, [])
     return (
         <main className="p-2">
             <div className="grid grid-cols-1 tablets:grid-cols-2 laptops:grid-cols-3 desktop:grid-cols-5 gap-4">
-                {data.map((item) => (
+                {blog.map((item) => (
 
                     <div key={item._id}>
-                        <Link href={`my-blogs/${item._id}`} prefetch>
+                        <Link href={`my-blogs/${item._id}`} prefetch={true}>
                             <section className="flex flex-col gap-2 shadow shadow-neutral-300 rounded-t-xl p-2 rounded-b-md">
                                 <ImageComponent src={item.image} alt="image" />
                                 <DetailsTemplate title={item.title} descriptions={item.descriptions} name={item.name} />

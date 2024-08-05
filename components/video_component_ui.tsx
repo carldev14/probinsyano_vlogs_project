@@ -1,57 +1,39 @@
 "use client"
-import dynamic from "next/dynamic";
+
 import { useEffect, useState } from "react";
-
-
-
-
-import LoadingForImage from "./loading_for_images";
 import DetailsTemplate from "@/templates/details_template";
 import { ListTypes } from "@/types/list_Type";
+import Loading from "./loading";
+import { useQuery } from "@tanstack/react-query";
+import ImageComponent from "./image_component";
 
-const ImageComponent = dynamic(() => import('./image_component'), {
-    loading: () => <LoadingForImage />,
-    ssr: false, // Set to true for server-side rendering (optional)
-});
-
-
-
-
-
-async function getData() {
-    const response = await fetch('/api/collections', {
-
-        next: { revalidate: 60 }
-
-    })
-    const results = await response.json();
-    return results.collections_data;
-}
 export default function VideoUi() {
-    const [data, setData] = useState<ListTypes[]>([]);
+    const [videos, setVideos] = useState<ListTypes[]>([]);
 
+    const { data, error, isPending } = useQuery({
+        queryKey: ['videos'],
+        queryFn: async () => {
+            const response = await fetch('/api/collections')
+            const data = await response.json()
+            return data.collections_data;
+        },
+    })
+    
     useEffect(() => {
-        const fetched = async () => {
-            try {
-
-
-                const fetched_data = await getData();
-                setData(fetched_data);
-
-            }
-            catch (error) {
-                console.log('There was an error: ', error)
-            }
+        if (data) {
+            setVideos(data)
         }
-
-        fetched();
-    }, [])
+    }, [data])
+    //OnLoading. Add a loading screen if not the data is not loaded yet.
+    if (isPending) return <Loading/>;
+    //Error indicator
+    if (error) console.log(error)
 
 
     return (
         <main className="p-2">
             <div className="grid grid-cols-1 tablets:grid-cols-2 laptops:grid-cols-3 desktop:grid-cols-5 gap-4">
-                {data.map((item) => (
+                {videos.map((item) => (
 
                     <div key={item._id}>
 
