@@ -49,16 +49,16 @@ export default function Header() {
     return (
         <>
             <header
-                className="p-2 px-4 bg-white select-none shadow shadow-gray-100"
+                className="p-[13px]  md:p-2 bg-white select-none shadow shadow-gray-100"
                 style={{ top: "0px" }}
             >
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center px-2">
                     <section className="flex items-center">
                         <Bars3CenterLeftIcon
                             className="size-5 text-blue-500 cursor-pointer mb-1"
                             onClick={handleToggleNav}
                         />
-                        <Image alt="logo" src={logo} className="w-full h-[35px]" />
+                        <Image alt="logo" src={logo} priority={true} className="w-full h-[35px]" />
                     </section>
                 </div>
             </header>

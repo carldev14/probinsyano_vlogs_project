@@ -15,7 +15,12 @@ export default function Blogs_Page_Ui({ id }: Props) {
   const { data, error, isPending } = useQuery({
     queryKey: ['blogsSc'],
     queryFn: async () => {
-      const response = await fetch(`/api/blogs/${id}`)
+      const response = await fetch(`/api/blogs/${id}`, {
+        headers: {
+                    
+          'Authorization': `Bearer ${process.env.TOKEN!}`,
+      }
+      })
       const data = await response.json()
       return data.blog_data;
     },

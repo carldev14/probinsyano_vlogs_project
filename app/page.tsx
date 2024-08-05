@@ -3,14 +3,15 @@
 
 import HomeUi from "@/components/home-ui";
 import Head from "next/head";
-import { usePathname } from "next/navigation";
+
 
 export default function Home() {
-  const pathname = usePathname();
+
+
   return (
     <>
       <Head>
-        <link rel="canonical" href={pathname} />
+        <link rel="canonical" href={"https://probinsyano-vlogs-project.vercel.app"} />
       </Head>
       <HomeUi />
     </>);

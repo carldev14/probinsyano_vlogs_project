@@ -13,7 +13,12 @@ export default function VideoUi() {
     const { data, error, isPending } = useQuery({
         queryKey: ['videos'],
         queryFn: async () => {
-            const response = await fetch('/api/collections')
+            const response = await fetch('/api/collections', {
+                headers: {
+                    
+                    'Authorization': `Bearer ${process.env.TOKEN!}`,
+                }
+            })
             const data = await response.json()
             return data.collections_data;
         },

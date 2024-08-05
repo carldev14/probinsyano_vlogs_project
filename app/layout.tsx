@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
+
 import Header from "@/components/header";
 import TanstackProvider from "@/components/providers/tanstack_provider";
 

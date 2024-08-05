@@ -10,12 +10,17 @@ import Loading from "./loading";
 
 
 export default function BlogUi() {
-    const [blog, setBlog] = useState<BlogsType[]>([])
 
+    const [blog, setBlog] = useState<BlogsType[]>([])
     const { data, error, isPending } = useQuery({
         queryKey: ['blogs'],
         queryFn: async () => {
-            const response = await fetch('/api/blogs')
+            const response = await fetch('/api/blogs', {
+                headers: {
+                    
+                    'Authorization': `Bearer ${process.env.TOKEN!}`,
+                }
+            })
             const data = await response.json()
             return data.blog_list_data;
         },
