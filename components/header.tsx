@@ -30,7 +30,7 @@ export default function Header() {
 
     const pathname = usePathname();
     const [showNav, setShowNav] = useState(false);
-    const router = useRouter();
+
 
     const handleToggleNav = () => {
         setShowNav(!showNav);

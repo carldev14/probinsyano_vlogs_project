@@ -28,12 +28,13 @@ export default function HeroCard() {
 
     return (
         <main className="w-full">
+            
             <div className="grid grid-cols-1 md:grid-cols-2 ">
                 {HeroCard.map((item, index) => {
                     return (
 
                             <section className=" w-full p-2 " key={index}>
-                                <h1 className={`text-black/90 capitalize text-base  md:text-lg `}>{item.label}</h1>
+                                <h2 className={`text-black/90 capitalize text-base md:text-lg `}>{item.label}</h2>
                                 <div className="my-1"></div>
                                 <p className={`${smallfontFace.className} text-black/70 text-sm`}>{item.description}</p>
                             </section>

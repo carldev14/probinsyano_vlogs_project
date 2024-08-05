@@ -13,5 +13,5 @@ export async function POST(request: NextRequest) {
     const { title, description } = await request.json();
     await connectMongoDB();
     await BlogsModels.create({ title, description });
-    return NextResponse.json({ message: "Topic Created" }, { status: 201 });
+    return NextResponse.json({ message: "Blog Added" }, { status: 201 });
 }
