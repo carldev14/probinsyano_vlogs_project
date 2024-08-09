@@ -14,7 +14,7 @@ export default function BlogPageBodyTut({ content_one, content_two, image_two, u
                     <h1 className={` text-xl text-black/80`}>{title_step_one}</h1>
                     <p className={`${smallfontFace.className} text-[15.5px] text-black/80 `}>{content_one}</p>
                 </section>
-                <section className="flex flex-col gap-1 ">
+                <section className="flex flex-col md:gap-1 gap-3">
                     <h1 className={`text-xl text-black/80`}>{title_step_two}</h1>
                     <p className={`${smallfontFace.className} text-[15.5px] text-black/80 `}>{content_two}</p>
                 </section>
