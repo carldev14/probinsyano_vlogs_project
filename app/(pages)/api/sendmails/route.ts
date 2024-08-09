@@ -9,8 +9,29 @@ interface SubjectType {
 
 const myemail = process.env.EMAIL!
 const password = process.env.PASSWORD!
+
+const authenticate = async (req: NextRequest) => {
+    const authHeader = req.headers.get('authorization');
+    if (!authHeader) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+  
+    const receivedToken = authHeader.split(' ')[1];
+    if (receivedToken !== process.env.TOKEN!) {
+      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    }
+  
+    return null;
+  };
+
+
+
 export async function POST(request: NextRequest) {
     try {
+        const authResponse = await authenticate(request);
+        if (authResponse) return authResponse;
+
+
         const { subject, message, their_email, their_name }: SubjectType = await request.json();
 
         const transporter = nodemailer.createTransport({

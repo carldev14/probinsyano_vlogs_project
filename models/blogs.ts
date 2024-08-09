@@ -7,6 +7,13 @@ const blogsShema = new Schema(
     url: String,
     image: String,
     name: String,
+    slugs: String,
+    content_one: String,
+    content_two: String,
+    layout: String,
+    title_step_one: String,
+    title_step_two: String,
+    image_two: String,
   },
   {
     timestamps: true,

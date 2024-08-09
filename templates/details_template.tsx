@@ -1,21 +1,23 @@
+import headerfontface from "@/utils/headerfontface";
 import smallfontFace from "@/utils/smallfontface";
 
 interface DetailsTemplatetype {
     title?: string,
     descriptions?: string,
     name?: string;
+
 }
 export default function DetailsTemplate({ title, descriptions, name }: DetailsTemplatetype) {
     return (
         <main>
-            <section className="flex flex-col gap-2 px-1 pb-1">
-                <section className="flex flex-col gap-2">
-                    <h1 className="text-sm  text-black ">{title}</h1>
-                    <label className={` text-xs text-black/80`}>{name}</label>
+            <section className="flex flex-col gap-[6px] p-1  ">
+                <section className="">
+                    <h1 className={` text-[14.5px]  text-slate-800 `}>{title}</h1>
+                    <label className={`${smallfontFace.className} text-xs text-slate-800`}>{name}</label>
                 </section>
                 <hr />
-                <section>
-                    <p className={`${smallfontFace.className}  text-[13.1px]  text-black/90`}>{descriptions}</p>
+                <section className="">
+                    <p className={`${smallfontFace.className} line-clamp-2 p- text-[13.5px]   text-slate-700`}>{descriptions}</p>
                 </section>
 
 

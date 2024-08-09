@@ -49,7 +49,7 @@ export default function Header() {
     return (
         <>
             <header
-                className="p-[13px]  md:p-2 bg-white select-none shadow shadow-gray-100"
+                className="p-[13px]  md:p-2 bg-white select-none shadow shadow-gray-300 "
                 style={{ top: "0px" }}
             >
                 <div className="flex justify-between items-center px-2">

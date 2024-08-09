@@ -1,7 +1,8 @@
 "use client";
 
+import { useMutation } from "@tanstack/react-query";
 import { Poppins } from "next/font/google";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const smallfontface = Poppins({ subsets: [], weight: '400' });
@@ -61,19 +62,43 @@ export default function ContactUi() {
 
   const validateEmail = emailregex.test(their_email)
 
+  const { mutate, error, isSuccess } = useMutation({
+    mutationKey: ["contact-us"],
+    mutationFn: async () => {
+      const response = await fetch('/api/sendmails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.TOKEN!}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          subject,
+          message,
+          their_email,
+          their_name,
+        } as RequestBodyType),
+
+      })
+      const data = await response.json();
+      setresponse(data.message)
+    }
+  })
+
+
+
 
 
   async function handle_sendMail() {
     setresponse("Please wait for reponse...")
     if (!validateEmail) {
       setresponse("Your email is not valid")
-      return ;
+      return;
     }
 
 
     if ([subject, message, their_email, their_name].includes("")) {
       setresponse("Fill up all fields");
-      return ;
+      return;
     }
 
 
@@ -89,32 +114,9 @@ export default function ContactUi() {
       setName("");
     };
 
-
-    try {
-      const response = await fetch('/api/sendmails', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json'
-        },
-        //meaning of this code below is getting the data from client using usestate and pass it in server side api. The RequestBodyType is the interface for all data. 
-        body: JSON.stringify({
-          subject,
-          message,
-          their_email,
-          their_name,
-        } as RequestBodyType),
-      });
-      const res = await response.json();
-
-      setresponse(res.message);
-
-      //Reset the form
-      resetFormFields();
-
-    } catch (error) {
-      console.error(error);
-      setresponse("Error sending mail");
-    }
+    mutate()
+    if (isSuccess) resetFormFields();
+    
   }
 
   return (

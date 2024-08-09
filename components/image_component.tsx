@@ -7,11 +7,11 @@ interface ImageProps {
 
 const ImageComponent = ({ src, alt }: ImageProps) => {
   return (
-    <section className=" pointer-events-none select-none p-1">
+    <section className=" pointer-events-none select-none">
       <Image
         src={src}
         alt={alt}
-        className="w-full rounded-t-xl rounded-b-lg"
+        className="w-full aspect-square rounded-t-xl rounded-b-lg"
      
         priority={true}
 

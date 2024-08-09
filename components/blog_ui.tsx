@@ -6,6 +6,7 @@ import ImageComponent from "./image_component";
 import { useQuery } from "@tanstack/react-query";
 import DetailsTemplate from "@/templates/details_template";
 import Loading from "./loading";
+import GreetTemplate from "@/templates/greet_template";
 
 
 
@@ -17,7 +18,7 @@ export default function BlogUi() {
         queryFn: async () => {
             const response = await fetch('/api/blogs', {
                 headers: {
-                    
+
                     'Authorization': `Bearer ${process.env.TOKEN!}`,
                 }
             })
@@ -32,29 +33,33 @@ export default function BlogUi() {
         }
     }, [data])
     //OnLoading. Add a loading screen if not the data is not loaded yet.
-    if (isPending) return <Loading/>;
+    if (isPending) return <Loading />;
     //Error indicator
     if (error) console.log(error)
 
     return (
-        <main className="p-2">
-            <div className="grid grid-cols-1 tablets:grid-cols-2 laptops:grid-cols-3 desktop:grid-cols-5 gap-4">
-                {blog.map((item) => (
+        <>
+            <GreetTemplate title="Read my blogs" descriptions="I upload is mostly my daily life, recipe, and others." />
+            <main className="p-2">
+                <div className="grid grid-cols-1 tablets:grid-cols-2 laptops:grid-cols-3 desktop:grid-cols-5 gap-4">
+                    {blog.map((item) => (
 
-                    <div key={item._id}>
-                        <Link href={`my-blogs/${item._id}`} prefetch={true}>
-                            <section className="flex flex-col gap-2 shadow shadow-neutral-300 rounded-t-xl p-2 rounded-b-md">
-                                <ImageComponent src={item.image} alt="image" />
-                                <DetailsTemplate title={item.title} descriptions={item.descriptions} name={item.name} />
+                        <div key={item._id}>
+                            <Link href={`my-blogs/${item.slugs}`} prefetch={true}>
+                                <section className="flex flex-col gap-1 shadow shadow-neutral-300 rounded-t-xl p-2 rounded-b-md">
+                                    <ImageComponent src={item.image} alt="image" />
+                                    <DetailsTemplate title={item.title} descriptions={item.descriptions} name={item.name} />
 
 
-                            </section>
-                        </Link>
 
-                    </div>
+                                </section>
+                            </Link>
 
-                ))}
-            </div>
-        </main >
+                        </div>
+
+                    ))}
+                </div>
+            </main >
+        </>
     );
 }

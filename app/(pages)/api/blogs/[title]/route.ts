@@ -16,12 +16,15 @@ const authenticate = async (req: NextRequest) => {
   return null;
 };
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, { params }: { params: { title: string } }) {
   const authResponse = await authenticate(request);
   if (authResponse) return authResponse;
 
-  const { id } = params;
+  const { title } = params;
+
+
   await connectMongoDB();
-  const blog_data = await BlogsModels.findOne({ _id: id });
+  const blog_data = await BlogsModels.findOne({ slugs: title });
+  
   return NextResponse.json({ blog_data }, { status: 200 });
 }

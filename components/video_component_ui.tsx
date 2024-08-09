@@ -6,6 +6,8 @@ import { ListTypes } from "@/types/list_Type";
 import Loading from "./loading";
 import { useQuery } from "@tanstack/react-query";
 import ImageComponent from "./image_component";
+import GreetTemplate from "@/templates/greet_template";
+
 
 export default function VideoUi() {
     const [videos, setVideos] = useState<ListTypes[]>([]);
@@ -15,7 +17,7 @@ export default function VideoUi() {
         queryFn: async () => {
             const response = await fetch('/api/collections', {
                 headers: {
-                    
+
                     'Authorization': `Bearer ${process.env.TOKEN!}`,
                 }
             })
@@ -23,19 +25,21 @@ export default function VideoUi() {
             return data.collections_data;
         },
     })
-    
+
     useEffect(() => {
         if (data) {
             setVideos(data)
         }
     }, [data])
     //OnLoading. Add a loading screen if not the data is not loaded yet.
-    if (isPending) return <Loading/>;
+    if (isPending) return <Loading  />;
     //Error indicator
     if (error) console.log(error)
 
 
     return (
+       <>
+        <GreetTemplate title='My Videos' descriptions='Please check out my videos and please suppoprt me' />
         <main className="p-2">
             <div className="grid grid-cols-1 tablets:grid-cols-2 laptops:grid-cols-3 desktop:grid-cols-5 gap-4">
                 {videos.map((item) => (
@@ -44,9 +48,9 @@ export default function VideoUi() {
 
 
                         <a href={item.url} target="_blank" className="cursor-pointer">
-                            <section className="flex flex-col gap-2 shadow shadow-neutral-300 rounded-t-xl p-2 rounded-b-md">
+                            <section className="flex flex-col gap-1 shadow shadow-neutral-300 rounded-t-xl p-2 rounded-b-md">
                                 <ImageComponent src={item.image} alt="image" />
-                                <DetailsTemplate title={item.title} descriptions={item.descriptions} name={item.name}/>
+                                <DetailsTemplate title={item.title} descriptions={item.descriptions} name={item.name} />
 
 
                             </section>
@@ -57,5 +61,6 @@ export default function VideoUi() {
                 ))}
             </div>
         </main >
+       </>
     );
 }
