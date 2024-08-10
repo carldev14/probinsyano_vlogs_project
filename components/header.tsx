@@ -17,6 +17,8 @@ import { usePathname } from "next/navigation";
 import logo from "@/assets/logo.svg";
 
 import Link from "next/link";
+import headerfontface from "@/utils/headerfontface";
+import { Poppins } from "next/font/google";
 
 const navbar = [
     { text: "Home", href: "/", icon: <HomeIcon /> },
@@ -49,16 +51,17 @@ export default function Header() {
     return (
         <>
             <header
-                className="p-[13px]  md:p-2 bg-white select-none shadow shadow-gray-300 "
+                className="  p-3 bg-white select-none shadow shadow-gray-300 "
                 style={{ top: "0px" }}
             >
                 <div className="flex justify-between items-center px-2">
-                    <section className="flex items-center">
+                    <section className="flex items-center flex-row gap-2">
                         <Bars3CenterLeftIcon
-                            className="size-5 text-blue-500 cursor-pointer mb-1"
+                            className="size-5 text-slate-700 cursor-pointer "
                             onClick={handleToggleNav}
                         />
-                        <Image alt="logo" src={logo} priority={true} className="w-full h-[35px]" />
+                        <label htmlFor="" className={`${headerfontface.className} text-[22px] text-slate-700`}>Probinsyano.vlogs</label>
+                        {/* <Image alt="logo" src={logo} priority={true} className="w-full h-[35px]" /> */}
                     </section>
                 </div>
             </header>

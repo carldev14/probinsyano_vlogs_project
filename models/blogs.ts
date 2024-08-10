@@ -13,6 +13,7 @@ const blogsShema = new Schema(
     layout: String,
     title_step_one: String,
     title_step_two: String,
+    title_step_three: String,
     image_two: String,
   },
   {

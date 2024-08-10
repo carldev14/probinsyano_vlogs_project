@@ -36,7 +36,7 @@ export default function HeroCard() {
                             <section className=" w-full p-2 " key={index}>
                                 <h2 className={`text-slate-800 capitalize text-lg `}>{item.label}</h2>
                                 <div className="my-1"></div>
-                                <p className={`${smallfontFace.className} text-slate-600 text-sm`}>{item.description}</p>
+                                <p className={`${smallfontFace.className} text-slate-600 text-[15.2px]`}>{item.description}</p>
                             </section>
 
 

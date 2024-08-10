@@ -43,13 +43,13 @@ export default function Greetings() {
         {linksData.map((item, index) => {
           if (item.type === "fbpage") {
             return (
-              <a href={item.url} key={index} target="_blank" className="p-[10px] rounded-full  text-xs text-white bg-blue-500">
+              <a href={item.url} key={index} target="_blank" className="p-[11px] rounded-full  text-xs text-white bg-blue-500">
                 {item.name}
               </a>
             )
           } else {
             return (
-              <Link href={item.url} key={index} className="p-[10px] rounded-full  text-xs text-white bg-blue-500" prefetch={true}>
+              <Link href={item.url} key={index} className="p-[11px] rounded-full  text-xs text-white bg-blue-500" prefetch={true}>
                 {item.name}
               </Link>
             )

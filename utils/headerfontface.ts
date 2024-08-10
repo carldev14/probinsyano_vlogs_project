@@ -1,5 +1,5 @@
-import {  Playfair_Display } from "next/font/google";
+import {  PT_Serif } from "next/font/google";
 
-const headerfontface = Playfair_Display({ subsets: [], weight: '400', display: "swap"});
+const headerfontface = PT_Serif({ subsets: [], weight: '400', display: "swap"});
 
 export default headerfontface;

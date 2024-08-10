@@ -10,6 +10,7 @@ export interface BlogsType{
     content_two: string,
     title_step_one: string,
     title_step_two: string,
+    title_step_three: string,
     layout: string;
     image_two: string;
 }

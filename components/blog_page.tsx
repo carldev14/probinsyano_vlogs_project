@@ -55,7 +55,7 @@ export default function Blogs_Page_Ui({ slugs }: Props) {
       {blog_page?.layout === "tutorial" ? (
         <div className="flex flex-col">
           <Blogheader title={blog_page.title} name={blog_page.name} image={blog_page.image} descriptions={blog_page.descriptions} />
-          <BlogPageBodyTut image_two={blog_page.image_two} title_step_one={blog_page.title_step_one} title_step_two={blog_page.title_step_two} content_one={blog_page.content_one} content_two={blog_page.content_two} url={blog_page.url} />
+          <BlogPageBodyTut title_step_three={blog_page.title_step_three} image_two={blog_page.image_two} title_step_one={blog_page.title_step_one} title_step_two={blog_page.title_step_two} content_one={blog_page.content_one} content_two={blog_page.content_two} url={blog_page.url} />
 
         </div>
       ) : blog_page?.layout === "entertainment" ? (
