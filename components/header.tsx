@@ -51,10 +51,10 @@ export default function Header() {
     return (
         <>
             <header
-                className="  p-3 bg-white select-none shadow shadow-gray-300 "
+                className="p-3   bg-white select-none shadow shadow-gray-300 "
                 style={{ top: "0px" }}
             >
-                <div className="flex justify-between items-center px-2">
+                <div className="flex  px-2">
                     <section className="flex items-center flex-row gap-2">
                         <Bars3CenterLeftIcon
                             className="size-5 text-slate-700 cursor-pointer "
