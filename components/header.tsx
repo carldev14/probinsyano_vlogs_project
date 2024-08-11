@@ -1,7 +1,7 @@
 "use client"
 
 import smallfontFace from "@/utils/smallfontface";
-import Image from "next/image";
+
 
 import {
     Bars3CenterLeftIcon,
@@ -11,14 +11,14 @@ import {
     ChatBubbleBottomCenterIcon,
     PhoneIcon,
 } from "@heroicons/react/16/solid";
-import { useRouter } from "next/navigation";
+
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import logo from "@/assets/logo.svg";
+
 
 import Link from "next/link";
 import headerfontface from "@/utils/headerfontface";
-import { Poppins } from "next/font/google";
+
 
 const navbar = [
     { text: "Home", href: "/", icon: <HomeIcon /> },
@@ -51,7 +51,7 @@ export default function Header() {
     return (
         <>
             <header
-                className="p-3   bg-white select-none shadow shadow-gray-300 "
+                className="p-3 fixed w-full  bg-white select-none shadow shadow-gray-300 "
                 style={{ top: "0px" }}
             >
                 <div className="flex  px-2">
@@ -60,25 +60,25 @@ export default function Header() {
                             className="size-5 text-slate-700 cursor-pointer "
                             onClick={handleToggleNav}
                         />
-                        <label htmlFor="" className={`${headerfontface.className} text-[22px] text-slate-700`}>Probinsyano.vlogs</label>
-                        {/* <Image alt="logo" src={logo} priority={true} className="w-full h-[35px]" /> */}
-                    </section>
+                        <label htmlFor="" className={`${headerfontface.className} text-[20px] text-neutral-700`}>Probinsyano.vlogs</label>
+                       </section>
                 </div>
             </header>
-            {showNav && (
+            {true && (
                 <div
                     style={{
+         
                         left: "0px",
                         opacity: showNav ? 1 : 0,
-                        transition: "opacity .2s",
+                        transition: "opacity .1s",
                         pointerEvents: showNav ? "auto" : "none",
                     }}
-                    className="fixed w-full h-full bg-black/30 bg-opacity-50 cursor-pointer"
+                    className="fixed top-[8.5vh] w-full h-full bg-black/30 bg-opacity-50 cursor-pointer"
                     onClick={handleToggleNav}
                 />
             )}
             <nav
-                className="fixed bg-white px-2 border-t w-auto flex justify-center border-neutral-400 border-opacity-30"
+                className="fixed top-[8.5vh] bg-white px-2 border-t w-auto flex justify-center border-neutral-400 border-opacity-30"
                 style={{
                     left: showNav ? "0" : "-100%",
                     height: "100vh",
