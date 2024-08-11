@@ -14,4 +14,5 @@ export interface BlogsTypeBody {
     title_step_five: string,
     title_step_six: string,
     image_two: string,
+
 }
