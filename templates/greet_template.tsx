@@ -1,4 +1,4 @@
-import headerfontface from "@/utils/headerfontface";
+
 import smallfontFace from "@/utils/smallfontface";
 
 interface GreetType{

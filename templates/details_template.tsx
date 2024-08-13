@@ -12,7 +12,7 @@ export default function DetailsTemplate({ title, descriptions, name }: DetailsTe
         <main>
             <section className="flex flex-col gap-[6px] p-1  ">
                 <section className="">
-                    <h1 className={` text-[14.5px]  text-slate-800 `}>{title}</h1>
+                    <h1 className={` text-[14.5px]  text-slate-800 line-clamp-1`}>{title}</h1>
                     <label className={`${smallfontFace.className} text-xs text-slate-800`}>{name}</label>
                 </section>
                 <hr />
