@@ -11,7 +11,7 @@ const ImageComponent = ({ src, alt }: ImageProps) => {
       <Image
         src={src}
         alt={alt}
-        className="w-full aspect-square rounded-t-xl rounded-b-lg"
+        className="w-full aspect-square rounded-xl p-1 "
      
         priority={true}
 

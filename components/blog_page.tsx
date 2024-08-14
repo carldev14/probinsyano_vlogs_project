@@ -6,7 +6,7 @@ import Blogheader from "./blog_ui_header";
 import Loading from "./loading";
 import { BlogsType } from "@/types/blogsType";
 import BlogPageBodyTut from "./blog_page_body_tutorial";
-import BlogPageEntertainment from "./blog_page_body_entertainment";
+import DailyLifeBlog from "./blog_page_body_daily_blog";
 
 export default function Blogs_Page_Ui({ slugs }: Props) {
   const { data: blog_page, error, isFetching } = useQuery<BlogsType>({
@@ -60,8 +60,8 @@ export default function Blogs_Page_Ui({ slugs }: Props) {
           content_six={blog_page.content_six}
           url={blog_page.url}
         />
-      ) : blog_page.layout === "entertainment" && (
-        <BlogPageEntertainment
+      ) : blog_page.layout === "daily_blog" ? (
+        <DailyLifeBlog
           content={blog_page.content}
           title_step_four={blog_page.title_step_four}
           title_step_five={blog_page.title_step_five}
@@ -78,6 +78,9 @@ export default function Blogs_Page_Ui({ slugs }: Props) {
           content_six={blog_page.content_six}
           url={blog_page.url}
         />
+      ): blog_page.layout === "entertainment" && (
+        <>
+        </>
       )}
     </main>
   )

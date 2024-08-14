@@ -41,7 +41,7 @@ export default function BlogUi() {
 
                         <div key={item._id}>
                             <Link href={`my-blogs/${item.slugs}`} prefetch={true}>
-                                <section className="flex flex-col gap-1 shadow shadow-neutral-300 rounded-t-xl p-2 rounded-b-md">
+                                <section className="flex flex-col gap-1 shadow bg-gray-50 shadow-neutral-300 rounded-t-xl p-2 rounded-b-md">
                                     <ImageComponent src={item.image} alt="image" />
                                     <DetailsTemplate title={item.title} descriptions={item.descriptions} name={item.name} />
 

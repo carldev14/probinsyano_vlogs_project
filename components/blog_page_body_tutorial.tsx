@@ -21,7 +21,7 @@ export default function BlogPageBodyTut({ content_one, content_two, image_two, u
     ]
 
     return (
-        <main className=" grid place-items-center px-2 ">
+        <main className=" grid place-items-center p-2 bg-gray-50">
             <div className="w-full md:w-5/6  flex flex-col gap-5  p-3">
                 <section className="flex flex-col gap-2  ">
                     <h1 className={` text-lg text-black/85`}>{title_step_one}</h1>
@@ -31,17 +31,17 @@ export default function BlogPageBodyTut({ content_one, content_two, image_two, u
 
                 <section className="flex flex-col gap-6  ">
                     <h1 className={` text-lg text-black/85`}>Let's Start our cooking session</h1>
-                    <div className="grid grid-cols-1 tablets:grid-cols-2 lg:grid-cols-4 gap-2">
+                    <div className="grid grid-cols-1 tablets:grid-cols-2 lg:grid-cols-4 gap-4">
                         {sections.map((item, index) => {
                             return (
 
-                                <section className="flex rounded-lg flex-col items-center   p-4 gap-5 bg-neutral-100  " key={index} >
+                                <section className="flex rounded-lg flex-col items-center   p-4 gap-5 shadow shadow-neutral-300  " key={index} >
 
                                     <h1 className="p-3 text-lg shadow shadow-neutral-400 rounded-full bg-white   text-black/90 w-12 items-center flex justify-center">{item.title}</h1>
                                     <section className="tablets:w-[190px] w-full p-1">
                                         <ImageComponent src={image_two} alt="image" />
                                     </section>
-                                    <p className={`${smallfontFace.className} text-center text-base text-black/90 `}>{item.content}</p>
+                                    <p className={`${smallfontFace.className} text-center text-sm text-black/90 `}>{item.content}</p>
                                 </section>
 
                             )
@@ -49,7 +49,7 @@ export default function BlogPageBodyTut({ content_one, content_two, image_two, u
                         {sections_2.map((item, index) => {
                             return (
 
-                                <section className="flex rounded-lg flex-col items-center   p-4 gap-5 bg-neutral-100  " key={index} >
+                                <section className="flex rounded-lg flex-col items-center   p-4 gap-5 shadow shadow-neutral-300   " key={index} >
 
                                     <h1 className="p-3 text-lg shadow shadow-neutral-400 rounded-full bg-white   text-black/90 w-12 items-center flex justify-center">{item.title}</h1>
                                     <section className="tablets:w-[190px] w-full p-1">
