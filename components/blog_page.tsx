@@ -9,7 +9,7 @@ import BlogPageBodyTut from "./blog_page_body_tutorial";
 import DailyLifeBlog from "./blog_page_body_daily_blog";
 
 export default function Blogs_Page_Ui({ slugs }: Props) {
-  const { data: blog_page, error, isFetching } = useQuery<BlogsType>({
+  const { data: blog_page, error, isPending } = useQuery<BlogsType>({
     queryKey: ['blogsSc', slugs],
     queryFn: async (): Promise<BlogsType> => {
       const response = await fetch(`/api/blogs/${slugs}`, {
@@ -23,7 +23,7 @@ export default function Blogs_Page_Ui({ slugs }: Props) {
     },
   })
 
-  if (isFetching) return (
+  if (isPending) return (
     <div className="pt-2">
       <Loading />
     </div>

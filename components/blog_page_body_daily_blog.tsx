@@ -11,8 +11,10 @@ export default function DailyLifeBlog({ content_one, content_two, image_two, url
         }
     ]
 
+
+
     return (
-        <main className=" grid place-items-center px-2 bg-gray-50 ">
+        <main className=" grid place-items-center p-2 bg-gray-50 ">
             <div className="w-full md:w-5/6  flex flex-col gap-5  p-3">
                 <div className="shadow shadow-neutral-300 h-1 rounded-xl"></div>
                 {sections.map((item) => (

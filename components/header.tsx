@@ -67,7 +67,7 @@ export default function Header() {
             {true && (
                 <div
                     style={{
-         
+                        top: '10vh',
                         left: "0px",
                         opacity: showNav ? 1 : 0,
                         transition: "opacity .1s",
@@ -78,7 +78,7 @@ export default function Header() {
                 />
             )}
             <nav
-                className="fixed top-[8.5vh] bg-white px-2 border-t w-auto flex justify-center border-neutral-400 border-opacity-30"
+                className="fixed top-[10vh] bg-white px-2 border-t w-auto flex justify-center border-neutral-400 border-opacity-30"
                 style={{
                     left: showNav ? "0" : "-100%",
                     height: "100vh",

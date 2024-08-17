@@ -33,7 +33,7 @@ export default function Blogheader({ title, name, image, descriptions }: props) 
                 </section>
 
 
-                <Link href={'/my-blogs'} prefetch={true} className={` ${smallfontFace.className} shadow shadow-neutral-300 w-fit   p-3 text-sm rounded-sm text-black/90 `}>Go back </Link>
+                <Link href={'/my-blogs'} prefetch={true} className={` ${smallfontFace.className} shadow shadow-neutral-300 w-fit   p-3 text-sm rounded-lg text-black/90 `}>Go back </Link>
 
 
 
