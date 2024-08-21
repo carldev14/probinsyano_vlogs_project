@@ -10,7 +10,7 @@ export default function TanstackProvider({ children }: { children: React.ReactNo
 
     return (
         <QueryClientProvider client={queryClient} >
-            <main className={`relative top-[7vh]`} >
+            <main className={`relative top-[54px]`} >
                 {children}
             </main>
         </QueryClientProvider>

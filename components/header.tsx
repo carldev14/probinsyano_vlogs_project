@@ -44,11 +44,8 @@ export default function Header() {
     };
 
     return (
-        <>
-            <header
-                className="p-3 fixed w-full  bg-white select-none shadow shadow-gray-300 "
-                style={{ top: "0px" }}
-            >
+        <div className="relative">
+          <header className=" shadow p-3  flex justify-between items-center bg-white z-50 fixed top-0 left-0 w-full">
                 <div className="flex  px-2">
                     <section className="flex items-center flex-row gap-2">
                         <Bars3CenterLeftIcon
@@ -62,18 +59,18 @@ export default function Header() {
             {true && (
                 <div
                     style={{
-                        top: '7vh',
+                     
                         left: "0px",
                         opacity: showNav ? 1 : 0,
                         transition: "opacity .1s",
                         pointerEvents: showNav ? "auto" : "none",
                     }}
-                    className="fixed top-[8.5vh] w-full h-full bg-black/30 bg-opacity-50 cursor-pointer"
+                    className="fixed top-[54px]  w-full h-full bg-black/30 bg-opacity-50 cursor-pointer"
                     onClick={handleToggleNav}
                 />
             )}
             <nav
-                className="fixed top-[7vh] bg-white px-2 border-t w-auto flex justify-center border-neutral-400 border-opacity-30"
+                className="fixed top-[54px]  bg-white px-2 border-t w-auto flex justify-center border-neutral-400 border-opacity-30"
                 style={{
                     left: showNav ? "0" : "-100%",
                     height: "100vh",
@@ -105,6 +102,6 @@ export default function Header() {
                     </ul>
                 </div>
             </nav>
-        </>
+        </div>
     );
 }
