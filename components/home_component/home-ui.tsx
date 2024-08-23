@@ -1,5 +1,3 @@
-
-import ContactUi from "./contact_me";
 import Greetings from "./greetings";
 import HeroCard from "./HeroCard";
 
