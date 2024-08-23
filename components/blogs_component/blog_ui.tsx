@@ -2,10 +2,10 @@
 import { BlogsType } from "@/types/blogsType";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import ImageComponent from "./image_component";
+import ImageComponent from "../media/image_component";
 import { useQuery } from "@tanstack/react-query";
 import DetailsTemplate from "@/templates/details_template";
-import Loading from "./loading";
+import Loading from "../loading/loading";
 import GreetTemplate from "@/templates/greet_template";
 
 

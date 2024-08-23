@@ -1,6 +1,6 @@
 "use client"
 
-import VideoUi from '@/components/video_component_ui';
+import VideoUi from '@/components/videos_component/video_component_ui';
 
 
 

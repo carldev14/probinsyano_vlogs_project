@@ -2,8 +2,8 @@
 
 import { Props } from "@/types/params"
 import { useQuery } from "@tanstack/react-query";
-import Blogheader from "./blog_ui_header";
-import Loading from "./loading";
+import Blogheader from "../blog_ui_header";
+import Loading from "../../loading/loading";
 import { BlogsType } from "@/types/blogsType";
 import BlogPageBodyTut from "./blog_page_body_tutorial";
 import DailyLifeBlog from "./blog_page_body_daily_blog";

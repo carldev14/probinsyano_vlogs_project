@@ -1,6 +1,6 @@
 
 'use client'
-import BlogUi from "@/components/blog_ui";
+import BlogUi from "@/components/blogs_component/blog_ui";
 
 
 

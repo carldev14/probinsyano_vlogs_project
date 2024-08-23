@@ -1,8 +1,8 @@
 "use client"
 
 import { useQuery } from "@tanstack/react-query";
-import Loading from "./loading";
-import ImageComponent from "./image_component";
+import Loading from "../loading/loading";
+import ImageComponent from "../media/image_component";
 import DetailsTemplate from "@/templates/details_template";
 import GreetTemplate from "@/templates/greet_template";
 import { ListTypes } from "@/types/list_Type"; // Ensure ListTypes is an array of objects

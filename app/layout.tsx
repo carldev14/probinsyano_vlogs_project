@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
-import Header from "@/components/header";
-import TanstackProvider from "@/components/providers/tanstack_provider";
+import Header from "@/components/layout/header";
+import Providers from "@/components/providers/warp_for_all";
 
 
 const poppins = Poppins({ subsets: [], weight: '500', display: "swap", });
@@ -27,11 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} `} >
-        <TanstackProvider>
+        <Providers>
           <Header />
             {children}
 
-        </TanstackProvider>
+        </Providers>
       </body>
     </html>
   );

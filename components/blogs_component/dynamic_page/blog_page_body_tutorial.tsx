@@ -3,7 +3,7 @@ import { BlogsTypeBody } from "@/types/BlogsTypeBody";
 
 
 import smallfontFace from "@/utils/smallfontface";
-import ImageComponent from "./image_component";
+import ImageComponent from "../../media/image_component";
 
 
 export default function BlogPageBodyTut({ content_one, content_two, image_two, url, title_step_three, content, title_step_one, title_step_two, title_step_four, title_step_five, title_step_six, content_three, content_four, content_five, content_six }: BlogsTypeBody) {

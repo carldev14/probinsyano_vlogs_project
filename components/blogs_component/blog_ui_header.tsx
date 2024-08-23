@@ -1,6 +1,6 @@
 
 import headerfontface from "@/utils/headerfontface";
-import ImageComponent from "./image_component";
+import ImageComponent from "../media/image_component";
 
 import smallfontFace from "@/utils/smallfontface";
 import Link from "next/link";

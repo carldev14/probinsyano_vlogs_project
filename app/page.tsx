@@ -1,6 +1,6 @@
 "use client";
 
-import HomeUi from "@/components/home-ui";
+import HomeUi from "@/components/home_component/home-ui";
 import Head from "next/head";
 
 
