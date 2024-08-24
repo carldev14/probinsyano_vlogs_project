@@ -3,6 +3,12 @@ import CollectionModels from "@/models/collections";
 
 import { NextRequest, NextResponse } from "next/server";
 
+interface AddCollections {
+  title: string,
+  descriptions: string,
+  url: string,
+  image: string,
+}
 
 const authenticate = async (req: NextRequest) => {
     const authHeader = req.headers.get('authorization');
@@ -28,3 +34,12 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ collections_data });
 }
 
+export async function POST(request: NextRequest) {
+  const authResponse = await authenticate(request);
+  if (authResponse) return authResponse;
+
+  const { title, descriptions, url, image }: AddCollections = await request.json();
+  await connectMongoDB();
+  await CollectionModels.create({ title, descriptions, url, image });
+  return NextResponse.json({ message: "New Collections Added" }, { status: 201 });
+}

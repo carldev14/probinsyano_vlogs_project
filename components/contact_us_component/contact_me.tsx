@@ -1,5 +1,7 @@
 "use client";
 
+import usePostApi from "@/custom_hooks/useApi";
+import headerPoppins from "@/utils/italicPoppins";
 import { useMutation } from "@tanstack/react-query";
 import { Poppins } from "next/font/google";
 import { useEffect, useState } from "react";
@@ -30,6 +32,7 @@ export default function ContactUi() {
   const [their_name, setName] = useState('');
   const [response, setresponse] = useState('');
 
+  const { post } = usePostApi();
 
 
 
@@ -62,27 +65,13 @@ export default function ContactUi() {
 
   const validateEmail = emailregex.test(their_email)
 
-  const { mutate, error, isSuccess } = useMutation({
-    mutationKey: ["contact-us"],
-    mutationFn: async () => {
-      const response = await fetch('/api/sendmails', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.TOKEN!}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          subject,
-          message,
-          their_email,
-          their_name,
-        } as RequestBodyType),
-
-      })
-      const data = await response.json();
-      setresponse(data.message)
-    }
-  })
+  //Post mutation
+  const { mutate, error, isSuccess } = post('/api/sendmails', {
+    subject,
+    message,
+    their_email,
+    their_name,
+  } as RequestBodyType);
 
 
 
@@ -100,23 +89,28 @@ export default function ContactUi() {
       setresponse("Fill up all fields");
       return;
     }
-
-
-
-
     const resetFormFields = () => {
       setTimeout(() => {
         setresponse("")
+        setSubject("");
+        setMessage("");
+        setEmail("");
+        setName("");
       }, 1000);
-      setSubject("");
-      setMessage("");
-      setEmail("");
-      setName("");
+
     };
 
+
+
+
+
+
     mutate()
-    if (isSuccess) resetFormFields();
-    
+    if (isSuccess) {
+      setresponse("Sent succesfully");
+      resetFormFields();
+    }
+
   }
 
   return (
@@ -133,17 +127,17 @@ export default function ContactUi() {
 
 
 
-        <div className="flex flex-col gap-4 ">
-          <div className="md:flex md:justify-between flex-col w-full gap-2">
+        <form className="flex flex-col gap-4 " onSubmit={handle_sendMail}>
+          <section className="flex flex-col w-full gap-2" >
             {inputFields.map((field, index) => (
               <section key={index} className="w-full flex flex-col my-2 md:my-0 gap-2">
-                <label className={`${smallfontface.className} text-black text-xs mx-1`}>{field.label}</label>
+                <label className={`${headerPoppins.className} text-black/70 text-xs `}>{field.label}</label>
                 {/*Logic. If field.type found called textarea, render the content below. The textarea. While if not render Input section*/}
                 {field.type === "textarea" ? (
                   <textarea
                     value={field.value}
                     onChange={field.onChange}
-                    className={`${smallfontface.className} p-2  text-xs   bg-slate-100 rounded-lg outline-none `}
+                    className={`${smallfontface.className} p-2  text-[13.5px] text-black/80   border border-black/20 rounded-md outline-none px-2`}
                   />
                 ) : (
                   <input
@@ -151,19 +145,19 @@ export default function ContactUi() {
                     value={field.value}
                     onChange={field.onChange}
 
-                    className={`${smallfontface.className} p-2  text-xs   bg-slate-100 rounded-lg outline-none `}
+                    className={`${smallfontface.className} p-2  text-[13.5px] text-black/80   border border-black/20 rounded-md outline-none `}
                   />
                 )}
               </section>
             ))}
-          </div>
+          </section>
 
 
-          <button onClick={handle_sendMail} className="p-2 w-full md:w-44 bg-blue-500 text-white text-xs rounded-lg">Finish, send now</button>
+          <button type="submit" className="p-2 w-full md:w-44 bg-blue-500 text-white text-[13.2px] rounded-md">Finish, send now</button>
 
-        </div>
+        </form>
 
-        <p className={`${smallfontface.className} text-xs`}>Response: *{response}*</p>
+        <p className={`${smallfontface.className} text-xs`}>{response}</p>
       </div>
     </main>
   );

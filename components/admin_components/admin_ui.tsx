@@ -28,10 +28,10 @@ export default function AdminUi() {
             })
 
             if (response?.ok) {
-                setResult("Welcome back")
-                router.push('/protected-feature')
+                setResult("Welcome back Admin!")
+                router.push('/protected-features')
             } else {
-                setResult("Incorrect Credentials")
+                setResult("Incorrect credentials, please check your inputs")
             }
 
         }

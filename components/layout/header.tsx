@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
-import smallfontFace from "@/utils/smallfontface";
-import { signOut } from "next-auth/react";
-import { useSession } from "next-auth/react";
+import { useState, useEffect } from "react";
+import { useSession, signOut } from "next-auth/react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import {
     Bars3CenterLeftIcon,
     HomeIcon,
@@ -10,65 +11,125 @@ import {
     VideoCameraIcon,
     ChatBubbleBottomCenterIcon,
     PhoneIcon,
+    Cog8ToothIcon,
 } from "@heroicons/react/16/solid";
-import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
 import headerfontface from "@/utils/headerfontface";
+import smallfontFace from "@/utils/smallfontface";
 
-const navbar = [
+const NAV_ITEMS = [
     { text: "Home", href: "/", icon: <HomeIcon /> },
     { text: "Contact me", href: "/contact-me", icon: <PhoneIcon /> },
     { text: "My blogs", href: "/my-blogs", icon: <ChatBubbleBottomCenterIcon /> },
     { text: "My videos", href: "/my-videos", icon: <VideoCameraIcon /> },
 ];
 
+const AuthLinks = ({ isAuth, handleLinkClick }: { isAuth: boolean; handleLinkClick: () => void; }) => (
+    <>
+        {isAuth ? (
+            <>
+                <NavItem
+                    onClick={() => signOut()}
+                    text="Sign out"
+                    icon={<ArrowLeftStartOnRectangleIcon className="size-5" />}
+                    bgColor="bg-red-100"
+                    textColor="text-red-600"
+                />
+                <NavItem
+                    href="/protected-features"
+                    text="Features"
+                    icon={<Cog8ToothIcon className="size-5" />}
+                    bgColor="bg-blue-100"
+                    textColor="text-blue-600"
+                    onClick={handleLinkClick}
+                />
+            </>
+        ) : (
+            <NavItem
+                href="/admin"
+                text="Admin"
+                icon={<ArrowLeftStartOnRectangleIcon className="size-5" />}
+                bgColor="bg-blue-50"
+                textColor="text-blue-600"
+                onClick={handleLinkClick}
+            />
+        )}
+    </>
+);
+
+const NavItem = ({
+    href,
+    onClick,
+    text,
+    icon,
+    bgColor,
+    textColor
+}: {
+    href?: string;
+    onClick?: () => void;
+    text: string;
+    icon: React.ReactNode;
+    bgColor: string;
+    textColor: string;
+}) => (
+    <section className={`rounded-md block p-2 ${bgColor} ${textColor}`}>
+        {href ? (
+            <Link
+                href={href}
+                prefetch
+                className={`${smallfontFace.className} text-xs gap-2 flex flex-col justify-center items-center w-full`}
+                onClick={onClick}
+            >
+                {icon}
+                {text}
+            </Link>
+        ) : (
+            <button
+                className={`${smallfontFace.className} text-xs gap-2 flex flex-col justify-center items-center w-full`}
+                onClick={onClick}
+            >
+                {icon}
+                {text}
+            </button>
+        )}
+    </section>
+);
+
 export default function Header() {
     const [showNav, setShowNav] = useState(false);
-    const [isAuth, setisAuth] = useState(false);
+    const [isAuth, setIsAuth] = useState(false);
     const pathname = usePathname();
     const { status } = useSession();
 
     useEffect(() => {
-        // Handle authentication status change
-        // You can perform side effects or additional logic here if needed
-        if (status === "authenticated") {
-            setisAuth(true)
-        } else {
-            setisAuth(false)
-        }
+        setIsAuth(status === "authenticated");
     }, [status]);
 
-    const handleToggleNav = () => {
-        setShowNav(!showNav);
-    };
-
-    const handleLinkClick = () => {
-        setShowNav(false);
-    };
+    const handleToggleNav = () => setShowNav(!showNav);
+    const handleLinkClick = () => setShowNav(false);
 
     return (
         <div className="relative select-none">
             <header className="shadow p-3 flex justify-between items-center bg-white z-50 fixed top-0 left-0 w-full">
                 <div className="flex px-2">
-                    <section className="flex items-center flex-row gap-2">
+                    <section className="flex items-center gap-2">
                         <Bars3CenterLeftIcon
                             className="size-5 text-slate-700 cursor-pointer"
                             onClick={handleToggleNav}
                         />
-                        <label htmlFor="" className={`${headerfontface.className} text-[20px] text-neutral-700`}>Probinsyano.vlogs</label>
+                        <label className={`${headerfontface.className} text-[20px] text-neutral-700`}>
+                            Probinsyano.vlogs
+                        </label>
                     </section>
                 </div>
             </header>
-            {true && (
+            {showNav && (
                 <div
-                    style={{
-                        left: "0px",
-                        opacity: showNav ? 1 : 0,
-                        transition: "opacity .2s",
-                        pointerEvents: showNav ? "auto" : "none",
-                    }}
                     className="fixed top-[54px] w-full h-full bg-black/30 bg-opacity-50 cursor-pointer"
+                    style={{
+                        opacity: showNav ? 1 : 0,
+                        pointerEvents: showNav ? "auto" : "none",
+                        transition: "opacity .2s"
+                    }}
                     onClick={handleToggleNav}
                 />
             )}
@@ -77,18 +138,15 @@ export default function Header() {
                 style={{
                     left: showNav ? "0" : "-100%",
                     height: "100vh",
-                    transition: ".3s ease",
+                    transition: ".3s ease"
                 }}
             >
                 <div className="p-1">
-                    <ul className="flex flex-col gap-2 mt-3 w-full ">
-                        {navbar.map((item) => (
+                    <ul className="flex flex-col gap-2 mt-3 w-full">
+                        {NAV_ITEMS.map((item) => (
                             <li
                                 key={item.href}
-                                className={`block rounded-lg ${pathname === item.href
-                                    ? "text-blue-600 bg-blue-50"
-                                    : "text-black/80"
-                                    }`}
+                                className={`block rounded-lg ${pathname === item.href ? "text-blue-600 bg-blue-50" : "text-black/80"}`}
                             >
                                 <Link
                                     href={item.href}
@@ -101,31 +159,7 @@ export default function Header() {
                                 </Link>
                             </li>
                         ))}
-
-
-                        {isAuth ? (
-                            <section className="rounded-md block p-2 bg-red-100 text-red-600">
-
-                                <button onClick={() => signOut()} className={`${smallfontFace.className} gap-2 flex flex-col justify-center items-center  text-xs w-full `}>
-                                    <ArrowLeftStartOnRectangleIcon className="size-5" />
-                                    Sign out
-                                </button>
-                            </section>
-                        ) : (
-                            <section className="rounded-md block p-2 bg-blue-50 text-blue-600  ">
-
-                                <Link href={'/admin'}
-                                    prefetch
-                                    className={`${smallfontFace.className} text-xs  gap-2 flex flex-col justify-center items-center w-full`} onClick={handleLinkClick}>
-                                    <ArrowLeftStartOnRectangleIcon className="size-5" />
-                                    Admin
-                                </Link>
-                            </section>
-
-                        )}
-
-
-
+                        <AuthLinks isAuth={isAuth} handleLinkClick={handleLinkClick} />
                     </ul>
                 </div>
             </nav>

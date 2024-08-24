@@ -22,5 +22,5 @@ export async function middleware(req: NextRequest) {
 
 // Configure the matcher to apply middleware to protected routes and login page
 export const config = { 
-  matcher: ['/protected-feature/:path*', '/admin'] 
+  matcher: ['/protected-features/:path*', '/admin'] 
 };
