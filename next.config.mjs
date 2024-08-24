@@ -33,6 +33,11 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: "s6.imgcdn.dev",
                 pathname: '**',
+            },
+            {
+                protocol: 'https',
+                hostname: "files.edgestore.dev",
+                pathname: '**',
             }
         ]
     }
