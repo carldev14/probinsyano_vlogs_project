@@ -5,6 +5,7 @@ import { useEdgeStore } from "@/lib/edgestore";
 import headerPoppins from "@/utils/italicPoppins";
 import smallfontFace from "@/utils/smallfontface";
 import React, { useEffect, useState } from "react";
+import { XMarkIcon } from "@heroicons/react/16/solid";
 import {
     EdgeStoreApiClientError
 } from '@edgestore/react/errors';
@@ -23,7 +24,7 @@ export default function UploadUi() {
     const [file, setFile] = useState<File | null>(null);
     const [imageVideo, setImageVideo] = useState("");
     const [previewUrl, setPreviewUrl] = useState<string | null>(null); // State to store preview URL
-
+    const [response, setresponse] = useState('');
     const { edgestore } = useEdgeStore();
     const { post } = useApi();
 
@@ -75,8 +76,7 @@ export default function UploadUi() {
             if (fileInput) {
                 fileInput.value = "";
             }
-
-            alert('Upload Successfully.')
+            setresponse('Uploading is done, check it out in Videos page')
         }
 
     }, [isSuccess]);
@@ -105,6 +105,7 @@ export default function UploadUi() {
     async function handleUpload(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         try {
+            setresponse('Uploading, please wait...')
             if (file) {
                 const res = await edgestore.publicFiles.upload({
                     file,
@@ -113,8 +114,10 @@ export default function UploadUi() {
                         console.log(progress); // Optional: Progress bar can be shown here
                     },
                 });
+
                 const imageUrl = res.url
                 setImageVideo(imageUrl);
+
 
 
                 setTimeout(() => {
@@ -137,6 +140,8 @@ export default function UploadUi() {
 
         }
     }
+
+
     return (
         <main className="grid place-items-center p-2 h-[90vh]">
             <div className="w-full md:w-[40%] lg:w-[30%] p-4">
@@ -148,33 +153,43 @@ export default function UploadUi() {
                                 type={field.type}
                                 onChange={field.onChange}
                                 value={field.value}
-                                className={`${smallfontFace.className} text-[13.5px] outline-none border border-black/20 w-full p-2 rounded-md text-black/90 px-2`}
+                                className={`${smallfontFace.className} text-[13px] outline-none border border-black/20 w-full p-1 rounded-md text-black/90 px-2`}
                             />
                         </section>
                     ))}
 
-                    <section className="flex flex-col gap-2">
+                    <section className="flex flex-col gap-2 w-full">
                         <legend className={`${headerPoppins.className} text-xs text-black/70`}>Upload</legend>
+
+
+                        {previewUrl && (
+
+                            <section className="relative w-[200px]">
+                                <ImageComponent src={previewUrl} alt="" />
+
+
+
+
+                                <XMarkIcon onClick={handleRemoveImage} className="absolute top-[-5px] right-[-5px]  size-6 bg-black/60 text-white border border-black rounded-md items-center flex justify-center" />
+
+                            </section>
+
+
+                        )}
                         <input
                             type="file"
                             onChange={handleFileChange}
-                            className={`${smallfontFace.className} text-[13.2px]`}
+                            className={`${smallfontFace.className} text-[13.2px]  w-full`}
                         />
-                        {previewUrl && (
-                            <div className="relative">
-                                <ImageComponent src={previewUrl} alt="" />
-                                <button
-                                    type="button"
-                                    onClick={handleRemoveImage}
-                                    className="absolute top-0 right-0 bg-red-500 text-white rounded-full px-2 py-1 text-xs"
-                                >
-                                    Remove
-                                </button>
-                            </div>
-                        )}
+
+                    </section>
+                    <section>
+                        <p className={`${smallfontFace.className} text-sm  text-black/90`}>
+                            {response}
+                        </p>
                     </section>
                     <section className="w-full flex justify-end">
-                        <button className="p-2 w-full lg:w-1/2 bg-blue-500 text-[13.2px] rounded-md text-white">
+                        <button className="p-[6px] w-full lg:w-1/2 bg-blue-500 text-[13.1px] rounded-md text-white">
                             Save
                         </button>
                     </section>

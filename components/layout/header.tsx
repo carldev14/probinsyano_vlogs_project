@@ -108,8 +108,8 @@ export default function Header() {
     const handleLinkClick = () => setShowNav(false);
 
     return (
-        <div className="relative select-none">
-            <header className="shadow p-3 flex justify-between items-center bg-white z-50 fixed top-0 left-0 w-full">
+        <div className="relative select-none z-[1]">
+            <header className="shadow p-3 flex justify-between items-center bg-white  fixed top-0 left-0 w-full">
                 <div className="flex px-2">
                     <section className="flex items-center gap-2">
                         <Bars3CenterLeftIcon
