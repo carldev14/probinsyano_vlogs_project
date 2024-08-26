@@ -7,7 +7,7 @@ interface AddCollections {
   title: string,
   descriptions: string,
   url: string,
-  image: string,
+  imageVideo: string,
 }
 
 const authenticate = async (req: NextRequest) => {
@@ -38,8 +38,9 @@ export async function POST(request: NextRequest) {
   const authResponse = await authenticate(request);
   if (authResponse) return authResponse;
 
-  const { title, descriptions, url, image }: AddCollections = await request.json();
+  const { title, descriptions, url, imageVideo }: AddCollections = await request.json();
+
   await connectMongoDB();
-  await CollectionModels.create({ title, descriptions, url, image });
+  await CollectionModels.create({ title, descriptions, url, imageVideo });
   return NextResponse.json({ message: "New Collections Added" }, { status: 201 });
 }

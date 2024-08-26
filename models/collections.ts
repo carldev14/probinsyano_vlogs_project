@@ -2,10 +2,10 @@ import mongoose, { Schema } from "mongoose";
 
 const collectionShema = new Schema(
   {
-    title: String,
-    descriptions: String,
-    url: String,
-    image: String,
+    title: { type: String, required: true },
+    descriptions: { type: String, required: true },
+    url: { type: String, required: true },
+    imageVideo: { type: String, required: true } // Ensure this matches your data
   },
   {
     timestamps: true,

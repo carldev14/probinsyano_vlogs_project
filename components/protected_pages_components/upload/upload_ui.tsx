@@ -5,7 +5,9 @@ import { useEdgeStore } from "@/lib/edgestore";
 import headerPoppins from "@/utils/italicPoppins";
 import smallfontFace from "@/utils/smallfontface";
 import React, { useEffect, useState } from "react";
-
+import {
+    EdgeStoreApiClientError
+} from '@edgestore/react/errors';
 interface InputField {
     type: string;
     value: string;
@@ -19,7 +21,7 @@ export default function UploadUi() {
     const [descriptions, setDescriptions] = useState("");
     const [url, setUrl] = useState("");
     const [file, setFile] = useState<File | null>(null);
-    const [image, setImage] = useState("");
+    const [imageVideo, setImageVideo] = useState("");
     const [previewUrl, setPreviewUrl] = useState<string | null>(null); // State to store preview URL
 
     const { edgestore } = useEdgeStore();
@@ -52,12 +54,12 @@ export default function UploadUi() {
         },
     ];
 
-    const { mutate, isSuccess } = post('/api/collections', {
+    const { mutate, isSuccess, error } = post('/api/collections', {
         name,
         title,
         descriptions,
         url,
-        image,
+        imageVideo,
     });
 
     useEffect(() => {
@@ -68,9 +70,20 @@ export default function UploadUi() {
             setUrl("");
             setFile(null);
             setPreviewUrl(null);
+
+            const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+            if (fileInput) {
+                fileInput.value = "";
+            }
+
+            alert('Upload Successfully.')
         }
+
     }, [isSuccess]);
 
+    if (error) {
+        console.log(error)
+    }
     const handleRemoveImage = () => {
         setFile(null);
         setPreviewUrl(null);
@@ -88,21 +101,42 @@ export default function UploadUi() {
             setPreviewUrl(URL.createObjectURL(selectedFile)); // Set preview URL
         }
     };
-// I will add a auto converter png to webp soon
+    // I will add a auto converter png to webp soon
     async function handleUpload(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        if (file) {
-            const res = await edgestore.publicFiles.upload({
-                file,
-                onProgressChange: (progress) => {
-                    console.log(progress); // Optional: Progress bar can be shown here
-                },
-            });
-            setImage(res.url);
-            mutate();
+        try {
+            if (file) {
+                const res = await edgestore.publicFiles.upload({
+                    file,
+
+                    onProgressChange: (progress) => {
+                        console.log(progress); // Optional: Progress bar can be shown here
+                    },
+                });
+                const imageUrl = res.url
+                setImageVideo(imageUrl);
+
+
+                setTimeout(() => {
+                    mutate();
+                }, 1000);
+
+            }
+        } catch (error) {
+            if (error instanceof EdgeStoreApiClientError) {
+                // if it fails due to the `maxSize` set in the router config
+                if (error.data.code === 'FILE_TOO_LARGE') {
+                    alert(
+                        `File too large. Max size is ${formatFileSize(
+                            error.data.details.maxFileSize,
+                        )}`,
+                    );
+                }
+            }
+
+
         }
     }
-
     return (
         <main className="grid place-items-center p-2 h-[90vh]">
             <div className="w-full md:w-[40%] lg:w-[30%] p-4">
@@ -149,3 +183,7 @@ export default function UploadUi() {
         </main>
     );
 }
+function formatFileSize(maxFileSize: number) {
+    throw new Error("Function not implemented.");
+}
+
