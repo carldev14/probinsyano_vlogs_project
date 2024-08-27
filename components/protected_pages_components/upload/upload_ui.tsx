@@ -164,15 +164,18 @@ export default function UploadUi() {
 
                         {previewUrl && (
 
-                            <section className="relative w-[200px]">
-                                <ImageComponent src={previewUrl} alt="" />
+                            <div className="flex justify-center ">
+                                <section className="relative w-full tablets:w-[250px] ">
+                                    <ImageComponent src={previewUrl} alt="" />
 
 
 
 
-                                <XMarkIcon onClick={handleRemoveImage} className="absolute top-[-5px] right-[-5px]  size-6 bg-black/60 text-white border border-black rounded-md items-center flex justify-center" />
+                                    <XMarkIcon onClick={handleRemoveImage} className="cursor-pointer absolute top-[-5px] right-[-5px]  size-6 bg-black/60 text-white border border-black rounded-md items-center flex justify-center" />
 
-                            </section>
+                                </section>
+
+                            </div>
 
 
                         )}
