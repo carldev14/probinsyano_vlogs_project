@@ -192,7 +192,7 @@ export default function UploadUi() {
                         </p>
                     </section>
                     <section className="w-full flex justify-end">
-                        <button className="p-[6px] w-full lg:w-1/2 bg-blue-500 text-[13.1px] rounded-md text-white">
+                        <button className={`${smallfontFace.className} p-[6px] w-full lg:w-1/2 bg-blue-500 text-[13.1px] rounded-md text-white`}>
                             Save
                         </button>
                     </section>
