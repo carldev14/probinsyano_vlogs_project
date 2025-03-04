@@ -1,8 +1,20 @@
+"use client";
 
+import HomeUi from "@/components/home_component/home-ui";
+import Head from "next/head";
 
-
-import HomeUi from "@/components/home-ui";
 
 export default function Home() {
-  return <HomeUi />
+
+
+  return (
+    <>
+      <Head>
+        <link rel="canonical" href="https://probinsyano-vlogs-project.vercel.app" />
+      </Head>
+
+        <HomeUi />
+
+    </>
+  );
 }

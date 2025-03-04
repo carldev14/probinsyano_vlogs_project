@@ -1,18 +1,18 @@
-import dynamic from 'next/dynamic';
-import Loading from "@/components/loading";
-import GreetTemplate from '@/templates/greet_template';
+"use client"
 
-const VideoUI = dynamic(() => import('@/components/video_component_ui'), {
-  loading: () => <Loading />,
-  ssr: false, // Set to true for server-side rendering (optional)
-});
+import VideoUi from '@/components/videos_component/video_component_ui';
+
+
 
 export default function MyVideo() {
+
   return (
-    <div className="p-3 place-items-center grid ">
-      <section className="flex flex-col md:w-4/5 w-full gap-2">
-        <GreetTemplate title='My Videos' descriptions='Please check out my videos and please suppoprt me' />
-        <VideoUI />
+    <div className="p-3 md:p-1 place-items-center grid ">
+      <section className=" md:w-4/5 w-full ">
+        
+
+        <VideoUi />
+
       </section>
 
     </div>

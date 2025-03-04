@@ -3,7 +3,7 @@ export interface ListTypes{
     title: string,
     descriptions: string,
     url: string,
-    image: string,
+    imageVideo: string,
     name: string;
  
 }

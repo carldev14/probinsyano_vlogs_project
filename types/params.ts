@@ -1,5 +1,6 @@
 export interface Props{
 
-        id: string;
+        
+        slugs: string;
 
 }
